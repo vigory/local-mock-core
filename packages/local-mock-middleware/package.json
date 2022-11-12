@@ -1,45 +1,39 @@
 {
-  "name": "local-mock-h5",
+  "name": "local-mock-middleware",
   "version": "1.0.0",
-  "description": "A h5 debug plugin for eruda and vConsole.",
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
+  "description": "A debug middleware for express and koa.",
+  "type": "commonjs",
+  "main": "dist/index.cjs.js",
   "types": "dist/types/index.d.ts",
-  "unpkg": "dist/index.global.js",
-  "jsdelivr": "dist/index.global.js",
   "author": "redstar08",
   "license": "MIT",
   "homepage": "https://github.com/redstar08/local-mock-core",
   "repository": "https://github.com/redstar08/local-mock-core",
   "scripts": {
-    "start": "rollup -w --environment NODE_ENV:development --config scripts/rollup.config.dev.ts --configPlugin @rollup/plugin-typescript",
-    "build": "rollup --environment NODE_ENV:production --config scripts/rollup.config.prod.ts --configPlugin @rollup/plugin-typescript",
+    "build": "rollup --environment NODE_ENV:production --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
     "test": "jest"
   },
   "files": [
     "dist",
     "types",
     "README.md",
-    "README_CN.md",
     "LICENSE"
   ],
   "keywords": [
-    "eruda",
-    "vconsole",
+    "express",
+    "koa",
     "local",
     "mock",
-    "h5",
+    "middleware",
     "debugger"
   ],
-  "dependencies": {
-    "preact": "^10.11.2"
-  },
   "devDependencies": {
     "@babel/cli": "^7.19.3",
     "@babel/core": "^7.20.2",
     "@babel/preset-env": "^7.20.2",
-    "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
+    "@commitlint/cli": "^17.2.0",
+    "@commitlint/config-conventional": "^17.2.0",
     "@rollup/plugin-alias": "^4.0.2",
     "@rollup/plugin-babel": "^6.0.2",
     "@rollup/plugin-commonjs": "^23.0.2",

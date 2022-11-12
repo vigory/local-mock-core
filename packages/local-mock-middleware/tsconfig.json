@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "es5",
+    "lib": ["es6", "es7", "esnext", "dom"],
+    "baseUrl": ".",
+    "rootDirs": ["src"],
+    "jsx": "preserve",
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "moduleResolution": "Node",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["src/**/*", "types/**/*.d.ts", "rollup.config.ts"],
+  "exclude": ["node_modules", "dist"]
+}
