@@ -1,0 +1,69 @@
+{
+  "name": "local-mock-h5",
+  "version": "1.0.0",
+  "description": "A h5 debug plugin for eruda and vConsole.",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/types/index.d.ts",
+  "unpkg": "dist/index.global.js",
+  "jsdelivr": "dist/index.global.js",
+  "author": "redstar08",
+  "license": "MIT",
+  "homepage": "https://github.com/redstar08/local-mock-core",
+  "repository": "https://github.com/redstar08/local-mock-core",
+  "scripts": {
+    "start": "rollup -w --environment NODE_ENV:development --config scripts/rollup.config.dev.ts --configPlugin @rollup/plugin-typescript",
+    "build": "rollup --environment NODE_ENV:production --config scripts/rollup.config.prod.ts --configPlugin @rollup/plugin-typescript",
+    "test": "jest"
+  },
+  "files": [
+    "dist",
+    "types",
+    "README.md",
+    "README_CN.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "eruda",
+    "vconsole",
+    "local",
+    "mock",
+    "h5",
+    "debugger"
+  ],
+  "dependencies": {
+    "preact": "^10.11.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.20.2",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.18.6",
+    "@commitlint/cli": "^17.2.0",
+    "@commitlint/config-conventional": "^17.2.0",
+    "@rollup/plugin-alias": "^4.0.2",
+    "@rollup/plugin-babel": "^6.0.2",
+    "@rollup/plugin-commonjs": "^23.0.2",
+    "@rollup/plugin-eslint": "^9.0.1",
+    "@rollup/plugin-json": "^5.0.1",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-replace": "^5.0.1",
+    "@rollup/plugin-typescript": "^9.0.2",
+    "@types/jest": "^29.2.2",
+    "babel-jest": "^29.2.2",
+    "commitizen": "^4.2.5",
+    "conventional-changelog-cli": "^2.2.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "jest": "^29.2.2",
+    "rollup": "^3.2.5",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-filesize": "^9.1.2",
+    "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-serve": "^2.0.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "ts-jest": "^29.0.3",
+    "tslib": "^2.4.1",
+    "typescript": "^4.8.4"
+  }
+}
