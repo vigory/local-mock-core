@@ -37,14 +37,14 @@ export default defineConfig({
       plugins: [terser()],
     },
     {
-      file: 'dist/es/index.esm.js',
+      file: 'dist/index.esm.js',
       format: 'es',
       name: name,
       banner,
       plugins: [terser()],
     },
     {
-      file: 'dist/es/index.global.js',
+      file: 'dist/index.global.js',
       format: 'iife',
       name: name.replace(/-(\w)/g, ($0, $1) => $1.toUpperCase()),
       banner,

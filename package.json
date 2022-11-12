@@ -10,6 +10,8 @@
   ],
   "scripts": {
     "prepare": "husky install",
+    "start": "lerna run start",
+    "build": "lerna run build",
     "prepub": "npm run check-git",
     "pub": "node scripts/publish.js",
     "lint": "eslint --cache --fix packages",

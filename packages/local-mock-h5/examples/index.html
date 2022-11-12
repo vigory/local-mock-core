@@ -9,13 +9,13 @@
     <script src="//cdn.jsdelivr.net/npm/eruda"></script>
     <script src="//cdn.jsdelivr.net/npm/vconsole"></script>
     <script type="module">
-      import { erudaLocalMock } from '/dist/es/index.js'
+      import { erudaLocalMock } from '/dist/index.esm.js'
       eruda.init({ tool: 'console' })
       const localMockPlugin = erudaLocalMock(eruda, { entry: 'http://localhost:8080' })
       eruda.add(localMockPlugin).show('localmock').show()
     </script>
     <!-- <script type="module">
-      import { vconsoleLocalMock } from '/dist/es/index.js'
+      import { vconsoleLocalMock } from '/dist/index.esm.js'
       const vconsole = new VConsole()
       const localMockplugin = vconsoleLocalMock(VConsole, { entry: 'http://localhost:8080' })
       vconsole.addPlugin(localMockplugin)
