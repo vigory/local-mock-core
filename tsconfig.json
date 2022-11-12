@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "esnext",
+    "lib": ["es6", "es7", "esnext", "dom"],
+    "baseUrl": ".",
+    "jsx": "preserve",
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "moduleResolution": "Node"
+  },
+  "include": ["packages/**/*"],
+  "exclude": ["node_modules", "docs", "scripts"]
+}
