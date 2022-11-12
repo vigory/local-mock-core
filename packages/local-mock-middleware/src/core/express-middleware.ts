@@ -1,8 +1,8 @@
 import { MiddlewareOptions } from 'types'
 import { defaultConfig, generateTemplate } from './constants'
 
-const expressMiddleware = (options = {}) => {
-  options = Object.assign(options, defaultConfig)
+const expressMiddleware = (options = defaultConfig) => {
+  options = Object.assign(defaultConfig, options)
 
   const { key, injectHtml } = options as MiddlewareOptions
 
