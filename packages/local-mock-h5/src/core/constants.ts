@@ -1,5 +1,6 @@
+import { LocalMockOptions } from 'types'
+
 export const MOCK_KEY = 'localMock'
-export const MOCK_NAME = 'Localmock'
 
 export const URLREG = /^(https?:\/\/)([^?#]+)?([^#]+)?(.*)$/
 
@@ -8,7 +9,8 @@ export enum Status {
   ON = 1,
 }
 
-export const defaultConfig = {
+export const defaultConfig: LocalMockOptions = {
+  key: 'localMock',
   state: Status.OFF,
   entry: 'http://localhost:8080',
 }

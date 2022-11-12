@@ -4,8 +4,9 @@ import expressMiddleware from '@/core/express-middleware'
 import koaMiddleware from '@/core/koa-middleware'
 
 const middleware = {
-  express: expressMiddleware,
-  koa: koaMiddleware,
+  name,
+  expressMiddleware,
+  koaMiddleware,
 }
 
 export default middleware

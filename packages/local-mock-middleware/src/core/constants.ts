@@ -10,10 +10,10 @@ export const generateTemplate = (entry, extraHtml) => {
     <body>
       ${extraHtml}
       <script>
-      try{
-        function mock () {
-          fetch('${entry}').then((obj)=>{
-            obj.text().then((text)=>{
+      try {
+        function mock() {
+          fetch('${entry}').then((obj) => {
+            obj.text().then((text) => {
               document.open()
               document.write(text)
               document.close() // ensure document.readyState = "complete"
@@ -21,8 +21,8 @@ export const generateTemplate = (entry, extraHtml) => {
           })
         }
         mock()
-      } catch(e) {
-        console.log(e);
+      } catch (e) {
+        console.log(e)
       }
       </script>
     </body>

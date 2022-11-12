@@ -6,7 +6,7 @@ const koaMiddleware = (options = {}) => {
 
   const { key, injectHtml } = options as MiddlewareOptions
 
-  const middleware = (ctx) => {
+  const middleware = (ctx, next) => {
     if (ctx && ctx.query) {
       const query = ctx.query || {}
       const entry = query[key] || {}
@@ -17,6 +17,7 @@ const koaMiddleware = (options = {}) => {
 
       return true
     }
+    next()
   }
 
   return middleware

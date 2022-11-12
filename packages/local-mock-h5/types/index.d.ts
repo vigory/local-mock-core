@@ -1,6 +1,7 @@
 export type LocalMockOptions = {
-  state: 0 | 1
-  entry: string
+  key?: string
+  state?: 0 | 1
+  entry?: string
 }
 
 export function erudaLocalMock<T>(eruda, options: LocalMockOptions): T

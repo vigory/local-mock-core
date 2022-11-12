@@ -1,4 +1,3 @@
-import { MOCK_KEY } from './constants'
 import { VConsoleLocalMockWrapper } from './styles'
 
 export const getStorage = (key) => {
@@ -47,20 +46,6 @@ export const getCurrentURLInfo = () => {
   } catch (error) {
     console.log(error)
   }
-}
-
-export const setLocalMockQuery = (entry) => {
-  const currentURL = new URL(location.href)
-  const { searchParams } = currentURL
-  searchParams.set(MOCK_KEY, entry)
-  return currentURL
-}
-
-export const deleteLocalMockQuery = () => {
-  const currentURL = new URL(location.href)
-  const { searchParams } = currentURL
-  searchParams.delete(MOCK_KEY)
-  return currentURL
 }
 
 export const createVConsoleWrapper = () => {

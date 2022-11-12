@@ -1,5 +1,5 @@
-import { MOCK_KEY, Status, defaultConfig } from '@/utils/constants'
-import { getStorage, setStorage } from '@/utils/index'
+import { MOCK_KEY, Status, defaultConfig } from '@/core/constants'
+import { getStorage, setStorage } from '@/core/utils'
 
 export const setup = (options = defaultConfig) => {
   options = Object.assign(defaultConfig, options)
@@ -12,11 +12,11 @@ export const setup = (options = defaultConfig) => {
   }
 
   const localConfig = localOptions || options
-  const { state, entry } = localConfig
+  const { key, state, entry } = localConfig
 
   const currentURL = new URL(location.href)
   const { searchParams } = currentURL
-  const urlEntry = searchParams.get(MOCK_KEY)
+  const urlEntry = searchParams.get(key)
 
   if (urlEntry) {
     setStorage(MOCK_KEY, { ...localConfig, state: Status.ON, entry: urlEntry })
@@ -26,15 +26,15 @@ export const setup = (options = defaultConfig) => {
       console.log('Try to fetch entry -> ', entry)
       fetch(entry)
         .then(() => {
-          searchParams.set(MOCK_KEY, entry)
-          alert('自动开启成功')
+          searchParams.set(key, entry)
+          // alert('自动开启成功')
           location.href = currentURL.href
         })
         .catch((error) => {
           console.log(error)
           setStorage(MOCK_KEY, { ...localConfig, state: Status.OFF })
-          searchParams.delete(MOCK_KEY)
-          alert('自动开启失败, 获取不到入口文件！')
+          searchParams.delete(key)
+          // alert('自动开启失败, 获取不到入口文件！')
           location.href = currentURL.href
         })
     }

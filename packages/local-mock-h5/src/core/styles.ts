@@ -52,6 +52,11 @@ export const LocalMockError = {
   marginLeft: '10px',
 }
 
+export const LocalMockSuccess = {
+  color: '#52c41a',
+  marginLeft: '10px',
+}
+
 export const LocalMockInput = {
   flex: 1,
   minHeight: '20px',
@@ -100,6 +105,7 @@ const styles = {
   LocalMockFooter,
   LocalMockTextarea,
   LocalMockError,
+  LocalMockSuccess,
   LocalMockInput,
   LocalMockButton,
   LocalMockButtonOK,

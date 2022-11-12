@@ -1,24 +1,17 @@
 /** @jsx h */
 import { h, render } from 'preact'
 import { useState, useEffect } from 'preact/hooks'
-import { MOCK_KEY, URLREG, Status, defaultConfig } from '@/utils/constants'
-import {
-  getStorage,
-  setStorage,
-  deleteStorage,
-  debounce,
-  getCurrentURLInfo,
-  setLocalMockQuery,
-  deleteLocalMockQuery,
-} from '@/utils/index'
-import styles from '@/utils/styles'
+import { MOCK_KEY, URLREG, Status, defaultConfig } from '@/core/constants'
+import { getStorage, setStorage, deleteStorage, debounce, getCurrentURLInfo } from '@/core/utils'
+import styles from '@/core/styles'
 
 const LocalMock = () => {
   const localConfig = getStorage(MOCK_KEY) || defaultConfig
-  const { state, entry } = localConfig
+  const { key, state, entry } = localConfig
 
   const [urlInfo, setUrlInfo] = useState('')
   const [errorInfo, setErrorInfo] = useState('')
+  const [successInfo, setSuccessInfo] = useState('')
   const [inputEntry, setInputEntry] = useState(entry)
 
   useEffect(() => {
@@ -26,35 +19,50 @@ const LocalMock = () => {
     setUrlInfo(urlInfo)
   }, [location.href])
 
-  const handleOpen = () => {
+  const handlePing = () => {
     if (!URLREG.test(inputEntry)) {
       setErrorInfo('无效地址！')
-      return
+      setSuccessInfo('')
+      return Promise.reject(new Error('Invalid entry url!'))
     }
     console.log('Try to fetch inputEntry -> ', inputEntry)
     fetch(inputEntry)
       .then(() => {
         setErrorInfo('')
-        setStorage(MOCK_KEY, { ...localConfig, state: Status.ON, entry: inputEntry })
-        const currentURL = setLocalMockQuery(inputEntry)
-        alert('手动开启成功')
-        location.href = currentURL.href
+        setSuccessInfo('ok')
+        return Promise.resolve('ok')
       })
       .catch((error) => {
         console.log(error)
         setErrorInfo('获取不到入口文件！')
+        setSuccessInfo('')
+        return Promise.reject(new Error('Can not fetch entry url!'))
       })
   }
 
   // 点击切换按钮
-  const handleToggle = async () => {
+  const handleToggle = () => {
+    const currentURL = new URL(location.href)
+    const { searchParams } = currentURL
     if (state === Status.ON) {
       // 关闭后刷新
       setStorage(MOCK_KEY, { ...localConfig, state: Status.OFF })
-      const currentURL = deleteLocalMockQuery()
+      searchParams.delete(key)
       location.href = currentURL.href
     } else {
-      handleOpen()
+      handlePing()
+        .then(() => {
+          setStorage(MOCK_KEY, { ...localConfig, state: Status.ON, entry: inputEntry })
+          searchParams.set(key, inputEntry)
+          // alert('手动开启成功')
+          location.href = currentURL.href
+        })
+        .catch((error) => {
+          console.log(error)
+          searchParams.delete(key)
+          // alert('开启失败, 获取不到入口文件！')
+          location.href = currentURL.href
+        })
     }
   }
 
@@ -69,6 +77,7 @@ const LocalMock = () => {
           <span>连接状态：</span>
           <span>{state === Status.ON ? 'On' : 'Off'}</span>
           {errorInfo ? <span style={styles.LocalMockError}>{errorInfo}</span> : null}
+          {successInfo ? <span style={styles.LocalMockSuccess}>{successInfo}</span> : null}
         </div>
         <div style={styles.LocalMockItem}>
           <input
@@ -76,7 +85,7 @@ const LocalMock = () => {
             value={inputEntry}
             onChange={(e: any) => setInputEntry(e.target.value)}
           />
-          <button style={styles.LocalMockButtonOK} onClick={debounce(handleOpen, 300)}>
+          <button style={styles.LocalMockButtonOK} onClick={debounce(handlePing, 300)}>
             Ping
           </button>
         </div>
