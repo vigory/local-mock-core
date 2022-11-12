@@ -1,8 +1,8 @@
-export type LocalMockOptions = {
-  state: 0 | 1
-  entry: string
+export type MiddlewareOptions = {
+  key?: string
+  injectHtml?: (...args) => string
 }
 
-export function erudaLocalMock<T>(eruda, options: LocalMockOptions): T
+export function expressMiddleware<T>(options: MiddlewareOptions): T
 
-export function vconsoleLocalMock<T>(VConsole, options: LocalMockOptions): T
+export function koaMiddleware<T>(options: MiddlewareOptions): T
