@@ -5,6 +5,7 @@
   "version": "independent",
   "command": {
     "version": {
+      "allowBranch": "release",
       "message": "build(release): version %s"
     }
   }

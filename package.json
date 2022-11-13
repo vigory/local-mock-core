@@ -15,7 +15,7 @@
     "build": "lerna run build",
     "patch": "lerna run patch",
     "preversion": "npm run check-git",
-    "version": "lerna version patch",
+    "version": "lerna version patch  --conventional-commits",
     "publish": "lerna publish",
     "lint": "eslint --cache --fix packages",
     "prettier": "prettier --write src",
