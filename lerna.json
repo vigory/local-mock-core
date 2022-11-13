@@ -11,8 +11,7 @@
     "version": {
       "allowBranch": "release",
       "conventionalCommits": true,
-      "noCommitHooks": true,
-      "message": "build(release): version %s"
+      "message": "build(release): publish version"
     }
   }
 }
