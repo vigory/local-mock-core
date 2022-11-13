@@ -10,6 +10,8 @@
   "command": {
     "version": {
       "allowBranch": "release",
+      "conventionalCommits": true,
+      "noCommitHooks": true,
       "message": "build(release): version %s"
     }
   }
