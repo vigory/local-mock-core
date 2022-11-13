@@ -1,8 +1,8 @@
 const spawn = require('cross-spawn')
-const chalk = require('chalk')
+const colors = require('colors/safe')
 
 const start = () => {
-  const patchCmd = 'npm --no-git-tag-version version patch'
+  const patchCmd = 'npm run patch'
 
   const buildCmd = 'npm run build'
 
@@ -45,7 +45,7 @@ const start = () => {
     const argvs = typeof item === 'function' ? item() : item.split(' ')
     const [cli, ...options] = argvs
     // console.log(cli, [...options])
-    console.log(chalk.green(`step${index + 1}: ${argvs.join(' ')}`))
+    console.log(colors.green(`step${index + 1}: ${argvs.join(' ')}`))
     // Spawn NPM synchronously
     spawn.sync(cli, [...options], { stdio: 'inherit' })
   })

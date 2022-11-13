@@ -14,6 +14,7 @@
   "scripts": {
     "start": "rollup -w --environment NODE_ENV:development --config scripts/rollup.config.dev.ts --configPlugin @rollup/plugin-typescript",
     "build": "rollup --environment NODE_ENV:production --config scripts/rollup.config.prod.ts --configPlugin @rollup/plugin-typescript",
+    "patch": "npm --no-git-tag-version version patch",
     "test": "jest"
   },
   "files": [

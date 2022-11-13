@@ -11,6 +11,7 @@
   "repository": "https://github.com/redstar08/local-mock-core",
   "scripts": {
     "build": "rollup --environment NODE_ENV:production --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
+    "patch": "npm --no-git-tag-version version patch",
     "test": "jest"
   },
   "files": [
