@@ -1,5 +1,6 @@
 {
   "name": "local-mock-core",
+  "version": "1.0.0",
   "private": true,
   "author": "redstar08",
   "license": "MIT",
