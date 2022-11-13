@@ -1,7 +1,21 @@
 const spawn = require('cross-spawn')
 const colors = require('colors/safe')
+const path = require('path')
+const fs = require('fs')
 
-const start = () => {
+const rootDir = path.resolve(__dirname, '../')
+
+const packages = fs.readdirSync(path.join(rootDir, './packages'))
+
+packages.forEach((target) => {
+  start(target)
+})
+
+function start(target) {
+  const targetDir = path.join(rootDir, './packages', target)
+
+  const cdCmd = `cd ${targetDir}`
+
   const patchCmd = 'npm run patch'
 
   const buildCmd = 'npm run build'
@@ -30,6 +44,7 @@ const start = () => {
   const publishCmd = 'npm publish --access=public'
 
   const cmds = [
+    cdCmd,
     patchCmd,
     buildCmd,
     changelogCmd,
@@ -50,5 +65,3 @@ const start = () => {
     spawn.sync(cli, [...options], { stdio: 'inherit' })
   })
 }
-
-start()
