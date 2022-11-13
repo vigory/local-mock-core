@@ -2,7 +2,7 @@ const spawn = require('cross-spawn')
 const chalk = require('chalk')
 
 const start = () => {
-  const patchCmd = 'npm --no-git-tag-version version patch'
+  const patchCmd = 'npm run patch'
 
   const buildCmd = 'npm run build'
 

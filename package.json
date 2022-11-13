@@ -12,7 +12,7 @@
     "prepare": "husky install",
     "start": "lerna run start",
     "build": "lerna run build",
-    "version": "lerna version patch",
+    "patch": "lerna run patch",
     "publish": "lerna publish",
     "prepub": "npm run check-git",
     "pub": "node scripts/publish.js",
