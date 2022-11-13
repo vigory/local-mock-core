@@ -1,6 +1,6 @@
 {
   "name": "local-mock-h5",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A h5 debug plugin for eruda and vConsole.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -61,5 +61,6 @@
     "ts-jest": "^29.0.3",
     "tslib": "^2.4.1",
     "typescript": "^4.8.4"
-  }
+  },
+  "gitHead": "23e5d7c62375e6f8f480910616fd672cb0677bfd"
 }

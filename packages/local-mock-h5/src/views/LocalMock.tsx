@@ -19,25 +19,35 @@ const LocalMock = () => {
     setUrlInfo(urlInfo)
   }, [location.href])
 
-  const handlePing = () => {
-    if (!URLREG.test(inputEntry)) {
-      setErrorInfo('无效地址！')
-      setSuccessInfo('')
-      return Promise.reject(new Error('Invalid entry url!'))
-    }
-    console.log('Try to fetch inputEntry -> ', inputEntry)
-    fetch(inputEntry)
-      .then(() => {
-        setErrorInfo('')
-        setSuccessInfo('ok')
-        return Promise.resolve('ok')
-      })
-      .catch((error) => {
-        console.log(error)
-        setErrorInfo('获取不到入口文件！')
+  const ping = () => {
+    return new Promise((resolve, reject) => {
+      if (!URLREG.test(inputEntry)) {
+        setErrorInfo('无效地址！')
         setSuccessInfo('')
-        return Promise.reject(new Error('Can not fetch entry url!'))
-      })
+        reject(new Error('Invalid entry url!'))
+      }
+      console.log('Try to fetch inputEntry -> ', inputEntry)
+      fetch(inputEntry)
+        .then(() => {
+          setErrorInfo('')
+          setSuccessInfo('ok')
+          // alert('ok')
+          resolve('ok')
+        })
+        .catch(() => {
+          setErrorInfo('获取不到入口文件！')
+          setSuccessInfo('')
+          // alert('Can not fetch entry url!')
+          reject(new Error('Can not fetch entry url!'))
+        })
+    })
+  }
+
+  // 点击 ping 按钮
+  const handlePing = () => {
+    ping().catch((error) => {
+      console.log(error)
+    })
   }
 
   // 点击切换按钮
@@ -50,7 +60,7 @@ const LocalMock = () => {
       searchParams.delete(key)
       location.href = currentURL.href
     } else {
-      handlePing()
+      ping()
         .then(() => {
           setStorage(MOCK_KEY, { ...localConfig, state: Status.ON, entry: inputEntry })
           searchParams.set(key, inputEntry)

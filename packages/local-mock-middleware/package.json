@@ -1,6 +1,6 @@
 {
   "name": "local-mock-middleware",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A debug middleware for express and koa.",
   "type": "commonjs",
   "main": "dist/index.cjs.js",
@@ -53,5 +53,6 @@
     "ts-jest": "^29.0.3",
     "tslib": "^2.4.1",
     "typescript": "^4.8.4"
-  }
+  },
+  "gitHead": "23e5d7c62375e6f8f480910616fd672cb0677bfd"
 }
