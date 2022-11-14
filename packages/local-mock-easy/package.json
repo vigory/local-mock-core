@@ -1,7 +1,7 @@
 {
-  "name": "local-mock-h5",
-  "version": "1.0.1",
-  "description": "A h5 debug plugin for eruda and vConsole.",
+  "name": "local-mock-easy",
+  "version": "1.0.2",
+  "description": "A easy debug plugin for eruda and vConsole.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/types/index.d.ts",
@@ -29,7 +29,7 @@
     "vconsole",
     "local",
     "mock",
-    "h5",
+    "easy",
     "debugger"
   ],
   "dependencies": {

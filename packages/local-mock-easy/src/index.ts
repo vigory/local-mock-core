@@ -1,16 +1,17 @@
 import { setup } from '@/core/setup'
 import { renderLocalMock } from '@/views/LocalMock'
 import { erudaLocalMock, vconsoleLocalMock } from '@/core'
-export { erudaLocalMock, vconsoleLocalMock } from '@/core'
 
-export const name = 'local-mock-h5'
+export { setup, renderLocalMock, erudaLocalMock, vconsoleLocalMock }
 
-const LocalMockH5 = {
+export const name = 'local-mock-easy'
+
+const localMockEasy = {
   name,
   setup,
-  render: renderLocalMock,
+  renderLocalMock,
   erudaLocalMock,
   vconsoleLocalMock,
 }
 
-export default LocalMockH5
+export default localMockEasy

@@ -1,7 +1,7 @@
 import expressMiddleware from '@/core/express-middleware'
 import koaMiddleware from '@/core/koa-middleware'
-export { default as expressMiddleware } from '@/core/express-middleware'
-export { default as koaMiddleware } from '@/core/koa-middleware'
+
+export { koaMiddleware, expressMiddleware }
 
 export const name = 'local-mock-middleware'
 

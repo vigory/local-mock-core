@@ -7,9 +7,9 @@ const expressMiddleware = (options = defaultConfig) => {
   const { key, injectHtml } = options as MiddlewareOptions
 
   const middleware = (req, res, next) => {
-    if (req && req.query) {
-      const query = req.query || {}
-      const entry = query[key] || {}
+    // console.log('middleware -> ', key, req?.query)
+    if (req && req.query && req.query[key]) {
+      const entry = req.query[key] || ''
       const extraHtml = injectHtml(req, res)
       const template = generateTemplate(entry, extraHtml)
 

@@ -65,13 +65,14 @@ const LocalMock = () => {
           setStorage(MOCK_KEY, { ...localConfig, state: Status.ON, entry: inputEntry })
           searchParams.set(key, inputEntry)
           // alert('手动开启成功')
+          console.log('local-mock-easy is handle opened!')
           location.href = currentURL.href
         })
         .catch((error) => {
           console.log(error)
           searchParams.delete(key)
           // alert('开启失败, 获取不到入口文件！')
-          location.href = currentURL.href
+          console.log('local-mock-easy open fail!')
         })
     }
   }
