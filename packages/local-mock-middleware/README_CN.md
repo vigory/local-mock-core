@@ -4,7 +4,7 @@
 
 # `local-mock-middleware`
 
-> local-mock-middleware 是一个 node 端的调试中间件，目前支持 [express](https://www.npmjs.com/package/express) and [koa](https://www.npmjs.com/package/koa).
+> local-mock-middleware 是一个 node 端的调试中间件，目前支持 [express](https://www.npmjs.com/package/express) 和 [koa](https://www.npmjs.com/package/koa).
 
 ## 快速上手
 
@@ -75,10 +75,10 @@ const koaMiddleware = koaMiddleware(options)
 | params     | desc                                                    | type                   | default     |
 | :--------- | :------------------------------------------------------ | :--------------------- | :---------- |
 | key        | 需要拦截的参数名<br> `http://example.com?{key}={entry}` | `string`               | `localMock` |
-| injectHtml | 注入的额外字符串的函数                                  | `(req, res) => string` | `0`         |
+| injectHtml | 注入的额外字符串的函数                                  | `(req, res) => string` | ""          |
 
 ## FQA
 
 #### local-mock-middleware 做了什么事情 ?
 
-如果 `req.query` 包含 key `localMock` 或者配置的 `options.key` local-mock-middleware 会自动生成并返回一个包含 mock 函数的 html 文件, mock 函数会将 `req.query[key]` 做为页面的入口文件去 fetch
+如果 `req.query` 包含 key `localMock` 或者配置的 `options.key` local-mock-middleware 会自动生成并返回一个包含 mock 函数的 html 文件, mock 函数会将 `req.query[key]` 做为页面的入口文件去 fetch , 然后通过 `document.write()` 去重写当前页面
