@@ -1,4 +1,4 @@
-[English](./README.md) | 简体中文
+[English](https://github.com/redstar08/local-mock-core/blob/master/packages/local-mock-easy/README.md) | 简体中文
 
 <a href="https://www.npmjs.com/package/local-mock-easy"><img src="https://img.shields.io/npm/v/local-mock-easy.svg?sanitize=true" alt="Version"></a>
 
