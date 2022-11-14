@@ -3,7 +3,7 @@ import { createVConsoleWrapper } from '@/core/utils'
 import { renderLocalMock } from '@/views/LocalMock'
 import { setup } from '@/core/setup'
 
-export const name = 'local-mock-h5'
+export const name = 'local-mock-easy'
 
 export function erudaLocalMock(eruda, options = defaultConfig) {
   return {

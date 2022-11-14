@@ -7,9 +7,9 @@ const koaMiddleware = (options = defaultConfig) => {
   const { key, injectHtml } = options as MiddlewareOptions
 
   const middleware = (ctx, next) => {
-    if (ctx && ctx.query) {
-      const query = ctx.query || {}
-      const entry = query[key] || {}
+    // console.log('middleware -> ', key, ctx?.query)
+    if (ctx && ctx.query && ctx.query[key]) {
+      const entry = ctx.query[key] || ''
       const extraHtml = injectHtml(ctx)
       const template = generateTemplate(entry, extraHtml)
 

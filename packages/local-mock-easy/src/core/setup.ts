@@ -28,6 +28,7 @@ export const setup = (options = defaultConfig) => {
         .then(() => {
           searchParams.set(key, entry)
           // alert('自动开启成功')
+          console.log('local-mock-easy is auto opened!')
           location.href = currentURL.href
         })
         .catch((error) => {
@@ -35,6 +36,7 @@ export const setup = (options = defaultConfig) => {
           setStorage(MOCK_KEY, { ...localConfig, state: Status.OFF })
           searchParams.delete(key)
           // alert('自动开启失败, 获取不到入口文件！')
+          console.log('local-mock-easy is auto closed!')
           location.href = currentURL.href
         })
     }
