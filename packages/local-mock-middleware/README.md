@@ -1,4 +1,4 @@
-English | [简体中文](./README_CN.md)
+English | [简体中文](https://github.com/redstar08/local-mock-core/blob/master/packages/local-mock-middleware/README_CN.md)
 
 <a href="https://www.npmjs.com/package/local-mock-middleware"><img src="https://img.shields.io/npm/v/local-mock-middleware.svg?sanitize=true" alt="Version"></a>
 
