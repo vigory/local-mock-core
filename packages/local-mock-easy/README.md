@@ -2,9 +2,9 @@ English | [简体中文](./README_CN.md)
 
 <a href="https://www.npmjs.com/package/local-mock-easy"><img src="https://img.shields.io/npm/v/local-mock-easy.svg?sanitize=true" alt="Version"></a>
 
-# local-mock-easy
+# `local-mock-easy`
 
-A h5 debug plugin for [eruda](https://www.npmjs.com/package/eruda) and [vConsole](https://www.npmjs.com/package/vconsole).
+> A easy debug plugin for [eruda](https://www.npmjs.com/package/eruda) and [vConsole](https://www.npmjs.com/package/vconsole).
 
 ## Features
 
@@ -26,9 +26,9 @@ yarn add local-mock-easy
 ##### Using local-mock-easy from CDN
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/local-mock-easy/dist/lib/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/local-mock-easy"></script>
 <script>
-  const { erudaLocalMock, vconsoleLocalMock } = window.localMockH5
+  const { erudaLocalMock, vconsoleLocalMock } = window.localMockEasy
 </script>
 ```
 
@@ -43,10 +43,7 @@ import { erudaLocalMock } from 'local-mock-easy'
 
 eruda.init()
 
-const localMockplugin = erudaLocalMock(eruda, {
-  state: 0,
-  entry: 'http://localhost:8080',
-})
+const localMockplugin = erudaLocalMock(eruda, {})
 
 eruda.add(localMockplugin)
 // #!endif
@@ -62,6 +59,7 @@ import { vconsoleLocalMock } from 'local-mock-easy'
 const vconsole = new VConsole()
 
 const localMockplugin = vconsoleLocalMock(VConsole, {
+  key: 'myLocalMock',
   state: 0,
   entry: 'http://localhost:8080',
 })
@@ -90,6 +88,18 @@ Since the entry file of 'devServer' is loaded in the domain name, you need to co
 
 - The cellular network needs to be on the same LAN as the localhost.
 - `publicPath` and `proxy` change to `http://{ip}:{port}`, such as: `http://192.168.1.10:8080`
+
+## Options API
+
+| params | desc                                                                 | type     | default                 |
+| :----- | :------------------------------------------------------------------- | :------- | :---------------------- |
+| state  | plugin open state                                                    | `number` | `0`                     |
+| entry  | the local entry                                                      | `string` | `http://localhost:8080` |
+| key    | the query params name in url.<br> `http://example.com?{key}={entry}` | `string` | `localMock`             |
+
+## FQA
+
+If you have any problems please contact us or open issues.
 
 #### Why you need to change IP address？
 

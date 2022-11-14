@@ -4,7 +4,7 @@
 
 # local-mock-easy
 
-local-mock-easy 是一个 H5 端的调试插件，目前支持 [eruda](https://www.npmjs.com/package/eruda) 和 [vConsole](https://www.npmjs.com/package/vconsole)。
+> local-mock-easy 是一个 H5 端的调试插件，目前支持 [eruda](https://www.npmjs.com/package/eruda) 和 [vConsole](https://www.npmjs.com/package/vconsole)。
 
 ## 特性
 
@@ -26,9 +26,9 @@ yarn add local-mock-easy
 ##### 通过 CDN 使用 local-mock-easy
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/local-mock-easy/dist/lib/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/local-mock-easy"></script>
 <script>
-  const { erudaLocalMock, vconsoleLocalMock } = window.localMockH5
+  const { erudaLocalMock, vconsoleLocalMock } = window.localMockEasy
 </script>
 ```
 
@@ -43,10 +43,7 @@ import { erudaLocalMock } from 'local-mock-easy'
 
 eruda.init()
 
-const localMockplugin = erudaLocalMock(eruda, {
-  state: 0,
-  entry: 'http://localhost:8080',
-})
+const localMockplugin = erudaLocalMock(eruda, {})
 
 eruda.add(localMockplugin)
 // #!endif
@@ -62,6 +59,7 @@ import { vconsoleLocalMock } from 'local-mock-easy'
 const vconsole = new VConsole()
 
 const localMockplugin = vconsoleLocalMock(VConsole, {
+  key: 'myLocalMock',
   state: 0,
   entry: 'http://localhost:8080',
 })
@@ -90,6 +88,18 @@ vconsole.addPlugin(localMockplugin)
 
 - 手机网络需要与本地主机处于同一局域网下
 - `publicPath` 和 `proxy` 改为 `http://{ip}:{port}`，如：`http://192.168.1.10:8080`
+
+## 配置 API
+
+| 参数  | 描述                                                         | type     | default                 |
+| :---- | :----------------------------------------------------------- | :------- | :---------------------- |
+| state | 插件开启状态                                                 | `number` | `0`                     |
+| entry | 本地资源入口                                                 | `string` | `http://localhost:8080` |
+| key   | url 上拼接的参数名称 <br> `http://example.com?{key}={entry}` | `string` | `localMock`             |
+
+## FQA
+
+如果你遇到问题请联系我们或者提 issues
 
 #### 为什么要将 devServer 改成 IP 地址的形式？
 
