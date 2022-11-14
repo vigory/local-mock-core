@@ -73,10 +73,10 @@ const koaMiddleware = koaMiddleware(options)
 | params | desc | type | default |
 | :-- | :-- | :-- | :-- |
 | key | The query params name in url.<br> `http://example.com?{key}={entry}` | `string` | `localMock` |
-| injectHtml | A function return extra html string | `(req, res) => string` | `0` |
+| injectHtml | A function return extra html string | `(req, res) => string` | "" |
 
 ## FQA
 
 #### What does local-mock-middleware do ?
 
-if `req.query` contains key `localMock` or `options.key` local-mock-middleware will generate and return a html includes mock function, the mock function will regard `req.query[key]` as a page entry and then fetch it.
+if `req.query` contains key `localMock` or `options.key` local-mock-middleware will generate and return a html includes mock function, the mock function will regard `req.query[key]` as a page entry and then fetch it, then use `document.write()` to rewrite current page.
