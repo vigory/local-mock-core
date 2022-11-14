@@ -1,5 +1,5 @@
 {
-  "name": "local-mock-h5",
+  "name": "local-mock-easy",
   "version": "1.0.1",
   "description": "A h5 debug plugin for eruda and vConsole.",
   "main": "dist/index.js",

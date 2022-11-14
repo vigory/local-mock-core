@@ -1,16 +1,16 @@
 [English](./README.md) | 简体中文
 
-<a href="https://www.npmjs.com/package/local-mock-h5"><img src="https://img.shields.io/npm/v/local-mock-h5.svg?sanitize=true" alt="Version"></a>
+<a href="https://www.npmjs.com/package/local-mock-easy"><img src="https://img.shields.io/npm/v/local-mock-easy.svg?sanitize=true" alt="Version"></a>
 
-# local-mock-h5
+# local-mock-easy
 
-local-mock-h5 是一个 H5 端的调试插件，目前支持 [eruda](https://www.npmjs.com/package/eruda) 和 [vConsole](https://www.npmjs.com/package/vconsole)。
+local-mock-easy 是一个 H5 端的调试插件，目前支持 [eruda](https://www.npmjs.com/package/eruda) 和 [vConsole](https://www.npmjs.com/package/vconsole)。
 
 ## 特性
 
 - 🎉**无代理**，不需要将业务域名代理到本地（如：Charles Map Remote）
 - 🚀**仅 devServer**，不需要同时启动 node 层服务
-- 🌻**一键开启，调试方便**，通过 local-mock-h5 插件，一键即可在真机上开启调试
+- 🌻**一键开启，调试方便**，通过 local-mock-easy 插件，一键即可在真机上开启调试
 
 ## 快速上手
 
@@ -19,14 +19,14 @@ local-mock-h5 是一个 H5 端的调试插件，目前支持 [eruda](https://www
 ##### 通过 npm 或 yarn 安装
 
 ```shell
-npm i local-mock-h5
-yarn add local-mock-h5
+npm i local-mock-easy
+yarn add local-mock-easy
 ```
 
-##### 通过 CDN 使用 local-mock-h5
+##### 通过 CDN 使用 local-mock-easy
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/local-mock-h5/dist/lib/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/local-mock-easy/dist/lib/index.js"></script>
 <script>
   const { erudaLocalMock, vconsoleLocalMock } = window.localMockH5
 </script>
@@ -39,7 +39,7 @@ yarn add local-mock-h5
 ```js
 // #!if ENV === "development"
 import eruda from 'eruda'
-import { erudaLocalMock } from 'local-mock-h5'
+import { erudaLocalMock } from 'local-mock-easy'
 
 eruda.init()
 
@@ -57,7 +57,7 @@ eruda.add(localMockplugin)
 ```js
 // #!if ENV === "development"
 import VConsole from 'vconsole'
-import { vconsoleLocalMock } from 'local-mock-h5'
+import { vconsoleLocalMock } from 'local-mock-easy'
 
 const vconsole = new VConsole()
 

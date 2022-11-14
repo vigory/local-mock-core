@@ -3,7 +3,7 @@ import { renderLocalMock } from '@/views/LocalMock'
 import { erudaLocalMock, vconsoleLocalMock } from '@/core'
 export { erudaLocalMock, vconsoleLocalMock } from '@/core'
 
-export const name = 'local-mock-h5'
+export const name = 'local-mock-easy'
 
 const LocalMockH5 = {
   name,
