@@ -4,20 +4,27 @@ import { defaultConfig, generateTemplate } from './constants'
 const koaMiddleware = (options = defaultConfig) => {
   options = Object.assign(defaultConfig, options)
 
-  const { key, injectHtml } = options as MiddlewareOptions
+  const { isOpen, key, injectHtml } = options as MiddlewareOptions
 
-  const middleware = (ctx, next) => {
-    // console.log('middleware -> ', key, ctx?.query)
-    if (ctx && ctx.query && ctx.query[key]) {
-      const entry = ctx.query[key] || ''
-      const extraHtml = injectHtml(ctx)
-      const template = generateTemplate(entry, extraHtml)
+  const middleware = async (ctx, next) => {
+    if (isOpen && ctx) {
+      const isGet = ctx.request.method === 'GET'
+      const isHtmlType = ctx.request.is('html') || !ctx.request.type // without Content-Type default is text/html or text/plain
+      const hasLocalMockQuery = ctx.query && ctx.query[key]
+      // console.log('koaMiddleware --->>> ', ctx.method, ctx.request.path, ctx?.query, ctx?.headers)
 
-      ctx.body = template
+      if (isGet && isHtmlType && hasLocalMockQuery) {
+        const entry = ctx.query[key] || ''
+        const extraHtml = injectHtml(ctx)
+        const template = generateTemplate(entry, extraHtml)
 
-      return true
+        ctx.body = template
+
+        return true
+      }
     }
-    next()
+
+    await next()
   }
 
   return middleware
