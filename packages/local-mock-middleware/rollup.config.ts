@@ -31,16 +31,16 @@ export default defineConfig({
   output: [
     {
       file: 'dist/index.js',
-      format: 'cjs',
+      format: 'umd',
       name: name,
       banner,
+      plugins: [terser()],
     },
     {
       file: 'dist/index.cjs.js',
       format: 'cjs',
       name: name,
       banner,
-      plugins: [terser()],
     },
   ],
   // 注意 plugin 的使用顺序

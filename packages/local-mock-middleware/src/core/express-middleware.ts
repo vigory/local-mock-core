@@ -4,19 +4,25 @@ import { defaultConfig, generateTemplate } from './constants'
 const expressMiddleware = (options = defaultConfig) => {
   options = Object.assign(defaultConfig, options)
 
-  const { key, injectHtml } = options as MiddlewareOptions
+  const { isOpen, key, injectHtml } = options as MiddlewareOptions
 
   const middleware = (req, res, next) => {
-    // console.log('middleware -> ', key, req?.query)
-    if (req && req.query && req.query[key]) {
-      const entry = req.query[key] || ''
-      const extraHtml = injectHtml(req, res)
-      const template = generateTemplate(entry, extraHtml)
+    if (req && isOpen) {
+      const isGet = req.method === 'GET'
+      const isHtmlType = req.is('html') || !req.get('Content-Type') // without Content-Type default is text/html or text/plain
+      const hasLocalMockQuery = req.query && req.query[key]
+      // console.log('koaMiddleware --->>> ', ctx.method, ctx.request.path, ctx?.query, ctx?.headers)
 
-      res.type('html')
-      res.send(template)
+      if (isGet && isHtmlType && hasLocalMockQuery) {
+        const entry = req.query[key] || ''
+        const extraHtml = injectHtml(req, res)
+        const template = generateTemplate(entry, extraHtml)
 
-      return
+        res.type('html')
+        res.send(template)
+
+        return true
+      }
     }
 
     next()

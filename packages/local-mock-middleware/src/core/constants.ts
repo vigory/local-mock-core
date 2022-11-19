@@ -1,11 +1,12 @@
 import { MiddlewareOptions } from 'types'
 
 export const defaultConfig: MiddlewareOptions = {
+  isOpen: false,
   key: 'localMock',
   injectHtml: () => '',
 }
 
-export const generateTemplate = (entry, extraHtml) => {
+export const generateTemplate = (entry: string, extraHtml: string): string => {
   return `<html>
     <body>
       ${extraHtml}

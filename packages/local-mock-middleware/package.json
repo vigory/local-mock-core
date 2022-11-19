@@ -1,6 +1,6 @@
 {
   "name": "local-mock-middleware",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A debug middleware for express and koa.",
   "type": "commonjs",
   "main": "dist/index.cjs.js",

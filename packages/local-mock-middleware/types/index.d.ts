@@ -1,7 +1,10 @@
 export declare type MiddlewareOptions = {
+  isOpen: boolean
   key?: string
   injectHtml?: (...args) => string
 }
+
+export declare function generateTemplate(entry: string, extraHtml: string): string
 
 export declare function expressMiddleware<T>(options: MiddlewareOptions): T
 
