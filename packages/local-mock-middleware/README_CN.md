@@ -1,4 +1,4 @@
-[English](https://github.com/redstar08/local-mock-core/blob/master/packages/local-mock-middleware/README.md) | 简体中文
+[English](/packages/local-mock-middleware/README.md) | 简体中文
 
 <a href="https://www.npmjs.com/package/local-mock-middleware"><img src="https://img.shields.io/npm/v/local-mock-middleware.svg?sanitize=true" alt="Version"></a>
 
@@ -25,7 +25,9 @@ const { expressMiddleware } = require('local-mock-middleware')
 
 const app = express()
 
-const middleware = expressMiddleware()
+const middleware = expressMiddleware({
+  isOpen: process.env.NODE_ENV === 'dev', // 请勿在生产环境中开启！！！
+})
 
 app.use(middleware)
 
@@ -40,7 +42,9 @@ const { koaMiddleware } = require('local-mock-middleware')
 
 const app = new Koa()
 
-const middleware = koaMiddleware()
+const middleware = koaMiddleware({
+  isOpen: process.env.NODE_ENV === 'dev', // 请勿在生产环境中开启！！！
+})
 
 app.use(middleware)
 
@@ -72,12 +76,21 @@ const koaMiddleware = koaMiddleware(options)
 
 ## Options API
 
-| params     | desc                                                    | type                   | default     |
-| :--------- | :------------------------------------------------------ | :--------------------- | :---------- |
-| key        | 需要拦截的参数名<br> `http://example.com?{key}={entry}` | `string`               | `localMock` |
-| injectHtml | 注入的额外字符串的函数                                  | `(req, res) => string` | ""          |
+| params     | desc                                                      | type                   | default     |
+| :--------- | :-------------------------------------------------------- | :--------------------- | :---------- |
+| isOpen     | 中间件的开启状态(默认 false 表示是一个无任何逻辑的中间件) | boolean                | false       |
+| key        | 需要拦截的参数名<br> `http://example.com?{key}={entry}`   | `string`               | `localMock` |
+| injectHtml | 注入的额外字符串的函数                                    | `(req, res) => string` | ""          |
 
 ## FQA
+
+#### 什么时候开启 local-mock-middleware 中间件？
+
+> 重要的事情说三遍！！！
+
+- 确保不要在生产环境开启！！！
+- 确保不要在生产环境开启！！！
+- 确保不要在生产环境开启！！！
 
 #### local-mock-middleware 做了什么事情 ?
 

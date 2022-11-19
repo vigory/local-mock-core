@@ -1,4 +1,4 @@
-English | [简体中文](https://github.com/redstar08/local-mock-core/blob/master/packages/local-mock-middleware/README_CN.md)
+English | [简体中文](/packages/local-mock-middleware/README_CN.md)
 
 <a href="https://www.npmjs.com/package/local-mock-middleware"><img src="https://img.shields.io/npm/v/local-mock-middleware.svg?sanitize=true" alt="Version"></a>
 
@@ -25,7 +25,8 @@ const { expressMiddleware } = require('local-mock-middleware')
 
 const app = express()
 
-const middleware = expressMiddleware()
+const middleware = expressMiddleware({
+  isOpen: process.env.NODE_ENV === 'dev', // ensure not to be used in production!!!
 
 app.use(middleware)
 ```
@@ -38,7 +39,9 @@ const { koaMiddleware } = require('local-mock-middleware')
 
 const app = new Koa()
 
-const middleware = koaMiddleware()
+const middleware = koaMiddleware({
+  isOpen: process.env.NODE_ENV === 'dev', // ensure not to be used in production!!!
+})
 
 app.use(middleware)
 
@@ -72,10 +75,19 @@ const koaMiddleware = koaMiddleware(options)
 
 | params | desc | type | default |
 | :-- | :-- | :-- | :-- |
+| isOpen | The default false means that it is a middleware without any logic | boolean | false |
 | key | The query params name in url.<br> `http://example.com?{key}={entry}` | `string` | `localMock` |
 | injectHtml | A function return extra html string | `(req, res) => string` | "" |
 
 ## FQA
+
+#### When can I open the middleware?
+
+> Important things need to be repeated for three times.
+
+- ensure not to be used in production!!!
+- ensure not to be used in production!!!
+- ensure not to be used in production!!!
 
 #### What does local-mock-middleware do ?
 

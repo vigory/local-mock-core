@@ -24,7 +24,9 @@ const { expressMiddleware } = require('local-mock-middleware')
 
 const app = express()
 
-const middleware = expressMiddleware()
+const middleware = expressMiddleware({
+  isOpen: process.env.NODE_ENV === 'dev',
+})
 
 app.use(middleware)
 ```
