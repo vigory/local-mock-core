@@ -8,6 +8,7 @@ export const name = 'local-mock-middleware'
 
 const middleware = {
   name,
+  generateTemplate,
   expressMiddleware,
   koaMiddleware,
 }
