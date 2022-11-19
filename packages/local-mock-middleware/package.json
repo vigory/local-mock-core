@@ -7,8 +7,8 @@
   "types": "dist/types/index.d.ts",
   "author": "redstar08",
   "license": "MIT",
-  "homepage": "https://github.com/redstar08/local-mock-core",
-  "repository": "https://github.com/redstar08/local-mock-core",
+  "homepage": "https://github.com/vigory/local-mock-core",
+  "repository": "https://github.com/vigory/local-mock-core",
   "scripts": {
     "build": "rollup --environment NODE_ENV:production --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
     "patch": "npm --no-git-tag-version version patch",
@@ -55,5 +55,5 @@
     "tslib": "^2.4.1",
     "typescript": "^4.8.4"
   },
-  "gitHead": "23e5d7c62375e6f8f480910616fd672cb0677bfd"
+  "gitHead": "a51860915769afd64fe147085c302f97dca8a2e3"
 }
