@@ -4,7 +4,12 @@ English | [简体中文](/packages/local-mock-middleware/README_CN.md)
 
 # `local-mock-middleware`
 
-> A easy debug middleware for [express](https://www.npmjs.com/package/express) and [koa](https://www.npmjs.com/package/koa).
+A easy debug middleware for [express](https://www.npmjs.com/package/express) and [koa](https://www.npmjs.com/package/koa).
+
+> Note: local-mock-middleware is only the server (nodejs) part of [local-mock-core](https://github.com/vigory/local-mock-core), complete local-mock debugging solution needs to install [local-mock-easy](https://www.npmjs.com/package/local-mock-easy) on the client (H5) at the same time, follow steps:
+
+1. Install local-mock-middleware on the nodejs server.
+1. Install [local-mock-easy](https://www.npmjs.com/package/local-mock-easy) on the client.
 
 ## Usage
 

@@ -1,10 +1,10 @@
 {
   "name": "local-mock-easy",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A easy debug plugin for eruda and vConsole.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
-  "types": "dist/types/index.d.ts",
+  "types": "types/index.d.ts",
   "unpkg": "dist/index.global.js",
   "jsdelivr": "dist/index.global.js",
   "author": "redstar08",

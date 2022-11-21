@@ -7,7 +7,7 @@ const expressMiddleware = (options = defaultConfig) => {
   const { isOpen, key, injectHtml } = options as MiddlewareOptions
 
   const middleware = (req, res, next) => {
-    if (req && isOpen) {
+    if (isOpen && req) {
       const isGet = req.method === 'GET'
       const isHtmlType = req.is('html') || !req.get('Content-Type') // without Content-Type default is text/html or text/plain
       const hasLocalMockQuery = req.query && req.query[key]

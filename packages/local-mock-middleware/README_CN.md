@@ -4,7 +4,12 @@
 
 # `local-mock-middleware`
 
-> local-mock-middleware 是一个 node 端的调试中间件，目前支持 [express](https://www.npmjs.com/package/express) 和 [koa](https://www.npmjs.com/package/koa).
+local-mock-middleware 是一个 node 端的调试中间件，目前支持 [express](https://www.npmjs.com/package/express) 和 [koa](https://www.npmjs.com/package/koa).
+
+> 注意：local-mock-middleware 仅作为 [local-mock-core](https://github.com/vigory/local-mock-core) 的服务端(nodejs)部分，完整的 local-mock 调试方案需要同时在客户端(H5) 安装 [local-mock-easy](https://www.npmjs.com/package/local-mock-easy) 插件，步骤如下：
+
+1. 在 nodejs 服务端安装 local-mock-middleware 中间件
+1. 在 H5 客户端安装 [local-mock-easy](https://www.npmjs.com/package/local-mock-easy) 插件
 
 ## 快速上手
 
