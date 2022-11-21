@@ -12,9 +12,9 @@ LocalMock is a mock scheme for local development environment, at business domain
 
 ## Get Started
 
-localMock need to install [local-mock-middleware](https://www.npmjs.com/package/local-mock-middleware) in nodejs server and [local-mock-easy](https://www.npmjs.com/package/local-mock-easy) in devServer
+localMock need to install [local-mock-middleware](https://www.npmjs.com/package/local-mock-middleware) on nodejs server and [local-mock-easy](https://www.npmjs.com/package/local-mock-easy) on H5 client.
 
-### Step1: install local-mock-middleware middleware
+### Step1: install local-mock-middleware on the nodejs server
 
 Add localMock middleware, when `req.query` contains key named`localMock`, local-mock-middleware will generate and return a html includes mock function.
 
@@ -33,7 +33,7 @@ app.use(middleware)
 
 > More info, reference [local-mock-middleware](https://www.npmjs.com/package/local-mock-middleware)
 
-### Step2: install local-mock-easy plugin
+### Step2: install local-mock-easy plugin on the H5 client
 
 ```js
 // #!if ENV === "development"

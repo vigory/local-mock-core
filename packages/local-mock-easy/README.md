@@ -4,7 +4,12 @@ English | [简体中文](/packages/local-mock-easy/README_CN.md)
 
 # `local-mock-easy`
 
-> A easy debug plugin for [eruda](https://www.npmjs.com/package/eruda) and [vConsole](https://www.npmjs.com/package/vconsole).
+A easy debug plugin for [eruda](https://www.npmjs.com/package/eruda) and [vConsole](https://www.npmjs.com/package/vconsole).
+
+> Note: local-mock-easy is only the client (H5) part of [local-mock-core](https://github.com/vigory/local-mock-core), complete local-mock debugging solution needs to install [local-mock-middleware](https://www.npmjs.com/package/local-mock-middleware) on the server (nodejs) at the same time, follow steps:
+
+1. Install [local-mock-middleware](https://www.npmjs.com/package/local-mock-middleware) on the nodejs server.
+1. Install local-mock-easy on the client.
 
 ## Features
 

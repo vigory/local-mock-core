@@ -12,9 +12,9 @@ LocalMock 顾名思义，指的是本地 mock 开发环境，在业务环境域�
 
 ## 快速上手
 
-localMock 方案需要依赖 [local-mock-middleware](https://www.npmjs.com/package/local-mock-middleware) 和 [local-mock-easy](https://www.npmjs.com/package/local-mock-easy)
+localMock 方案需要在 nodejs 服务端安装 [local-mock-middleware](https://www.npmjs.com/package/local-mock-middleware)，同时在 H5 客户端需要安装 [local-mock-easy](https://www.npmjs.com/package/local-mock-easy)
 
-### 第一步 安装 local-mock-middleware 中间件
+### 第一步 nodejs 端安装 local-mock-middleware 中间件
 
 增加一个 localMock 中间件逻辑，当 query 参数中包含 `localMock` 字段时，将构造并返回一个 html 文件流
 
@@ -33,7 +33,7 @@ app.use(middleware)
 
 > 更多使用，请参考 [local-mock-middleware](https://www.npmjs.com/package/local-mock-middleware)
 
-### 第二步 安装 local-mock-easy 面板插件
+### 第二步 H5 端安装 local-mock-easy 面板插件
 
 ```js
 // #!if ENV === "development"

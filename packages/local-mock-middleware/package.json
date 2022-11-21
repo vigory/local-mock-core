@@ -4,7 +4,7 @@
   "description": "A debug middleware for express and koa.",
   "type": "commonjs",
   "main": "dist/index.cjs.js",
-  "types": "dist/types/index.d.ts",
+  "types": "types/index.d.ts",
   "author": "redstar08",
   "license": "MIT",
   "homepage": "https://github.com/vigory/local-mock-core",
