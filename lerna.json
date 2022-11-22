@@ -11,6 +11,8 @@
     "version": {
       "allowBranch": "release",
       "conventionalCommits": true,
+      "conventionalPrerelease": true,
+      "conventionalBumpPrerelease": true,
       "message": "build(release): publish version"
     }
   }
