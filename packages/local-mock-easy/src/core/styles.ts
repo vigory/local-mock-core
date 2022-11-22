@@ -54,6 +54,8 @@ export const LocalMockError = {
 
 export const LocalMockSuccess = {
   color: '#52c41a',
+  fontWeight: 700,
+  fontSize: 18,
   marginLeft: '10px',
 }
 
