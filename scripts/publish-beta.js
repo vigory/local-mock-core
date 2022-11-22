@@ -4,9 +4,9 @@ const colors = require('colors/safe')
 function start() {
   const buildCmd = 'npm run build'
 
-  const versionCmd = 'npm run version:beta'
+  const versionCmd = 'npm run patch:beta'
 
-  const publishCmd = 'npm run publish:beta'
+  const publishCmd = 'npm run release:beta'
 
   const cmds = [buildCmd, versionCmd, publishCmd]
 
