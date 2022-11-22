@@ -30,9 +30,9 @@ const LocalMock = () => {
       fetch(inputEntry)
         .then(() => {
           setErrorInfo('')
-          setSuccessInfo('ok')
+          setSuccessInfo('Success!')
           // alert('ok')
-          resolve('ok')
+          resolve('Success!')
         })
         .catch(() => {
           setErrorInfo('获取不到入口文件！')
@@ -91,11 +91,7 @@ const LocalMock = () => {
           {successInfo ? <span style={styles.LocalMockSuccess}>{successInfo}</span> : null}
         </div>
         <div style={styles.LocalMockItem}>
-          <input
-            style={styles.LocalMockInput}
-            value={inputEntry}
-            onChange={(e: any) => setInputEntry(e.target.value)}
-          />
+          <input style={styles.LocalMockInput} value={inputEntry} onInput={(e: any) => setInputEntry(e.target.value)} />
           <button style={styles.LocalMockButtonOK} onClick={debounce(handlePing, 300)}>
             Ping
           </button>
