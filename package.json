@@ -20,7 +20,7 @@
     "publish:beta": "lerna publish from-git --dist-tag beta",
     "prepub": "npm run check-git",
     "pub": "node scripts/publish.js",
-    "pub:beta": "node scripts/publish.js --beta",
+    "pub:beta": "node scripts/publish-beta.js",
     "lint": "eslint --cache --fix packages",
     "prettier": "prettier --write src",
     "lint-staged": "lint-staged",
