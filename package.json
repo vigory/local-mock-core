@@ -14,7 +14,7 @@
     "start": "lerna run start",
     "build": "lerna run build",
     "patch": "lerna version patch",
-    "patch:beta": "lerna version prepatch --preid beta",
+    "patch:beta": "lerna version prerelease --preid beta",
     "release": "lerna publish from-git",
     "release:beta": "lerna publish from-git --dist-tag beta",
     "prepub": "npm run check-git",
