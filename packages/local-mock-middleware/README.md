@@ -32,6 +32,7 @@ const app = express()
 
 const middleware = expressMiddleware({
   isOpen: process.env.NODE_ENV === 'dev', // ensure not to be used in production!!!
+})
 
 app.use(middleware)
 ```
