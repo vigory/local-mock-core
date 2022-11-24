@@ -2,10 +2,11 @@ import { LocalMockProxyDefaultConfig } from 'types'
 
 export const localMockProxyDefaultConfig: LocalMockProxyDefaultConfig = {
   isLocalMockProxyOpen: true,
-  localMockParamsName: 'localMock',
   htmlHost: '127.0.0.1',
   htmlPort: 8899,
-  htmlServerPath: '/aaaa',
+  htmlServerPath: '/local-mock-html',
+  localMockParamsName: 'localMock',
+  injectHtml: null,
 }
 
 export const localMockProxyHttpDefaultConfig = {

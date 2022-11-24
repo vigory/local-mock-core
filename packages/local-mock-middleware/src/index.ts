@@ -1,17 +1,14 @@
 // import { generateTemplate } from '@/core/constants'
-import expressMiddleware from '@/core/express-middleware'
-import koaMiddleware from '@/core/koa-middleware'
-import localMockProxy from '@/core/localMockProxy'
+// import expressMiddleware from '@/core/express-middleware'
+// import koaMiddleware from '@/core/koa-middleware'
+// import localMockProxy from '@/core/localmock-proxy'
 
-export { koaMiddleware, expressMiddleware, localMockProxy }
+import createLockMock from './core/local-mock'
 
-export const name = 'local-mock-middleware'
+// export { koaMiddleware, expressMiddleware, localMockProxy }
 
-const middleware = {
-  name,
-  localMockProxy,
-  expressMiddleware,
-  koaMiddleware,
-}
+// export const name = 'local-mock-middleware'
 
-export default middleware
+// const middleware =
+
+export default createLockMock
