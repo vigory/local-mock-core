@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.7-beta.2](https://github.com/vigory/local-mock-core/compare/local-mock-easy@1.0.7-beta.0...local-mock-easy@1.0.7-beta.2) (2022-11-24)
+
+**Note:** Version bump only for package local-mock-easy
+
 ## [1.0.7-beta.1](https://github.com/vigory/local-mock-core/compare/local-mock-easy@1.0.7-beta.0...local-mock-easy@1.0.7-beta.1) (2022-11-24)
 
 **Note:** Version bump only for package local-mock-easy
