@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.7-beta.1](https://github.com/vigory/local-mock-core/compare/local-mock-middleware@1.0.7-beta.0...local-mock-middleware@1.0.7-beta.1) (2022-11-24)
+
+### Features
+
+- update ([4484b60](https://github.com/vigory/local-mock-core/commit/4484b60a57704bfd280232311ed42c68fb99673f))
+
 ## [1.0.7-beta.0](https://github.com/vigory/local-mock-core/compare/local-mock-middleware@1.0.6...local-mock-middleware@1.0.7-beta.0) (2022-11-22)
 
 **Note:** Version bump only for package local-mock-middleware
