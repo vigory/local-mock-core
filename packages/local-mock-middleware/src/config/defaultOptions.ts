@@ -8,13 +8,3 @@ export const localMockProxyDefaultConfig: LocalMockProxyDefaultConfig = {
   localMockParamsName: 'localMock',
   injectHtml: null,
 }
-
-export const localMockProxyHttpDefaultConfig = {
-  ...localMockProxyDefaultConfig,
-  port: 80,
-}
-
-export const localMockProxyHttpsDefaultConfig = {
-  ...localMockProxyDefaultConfig,
-  port: 443,
-}
