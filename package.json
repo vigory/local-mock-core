@@ -2,10 +2,10 @@
   "name": "local-mock-core",
   "version": "1.0.0",
   "private": true,
-  "author": "redstar08",
+  "author": "vigory",
   "license": "MIT",
-  "homepage": "https://github.com/redstar08/local-mock-core",
-  "repository": "https://github.com/redstar08/local-mock-core",
+  "homepage": "https://github.com/vigory/local-mock-core.git",
+  "repository": "git@github.com:vigory/local-mock-core.git",
   "workspaces": [
     "packages/*"
   ],
