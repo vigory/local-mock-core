@@ -13,17 +13,17 @@ koaLocalMock.createKoaLocalHtmlProxy = function (app) {
 
     const mockPath = _this.getLocalMockParams(ctx.req.url, localMockParamsName)
 
-    console.log('mockPath', ctx.request.path, htmlServerPath, mockPath)
-
     if (!mockPath) {
       await next()
       return
     }
 
-    if (ctx.request.url !== htmlServerPath) {
+    if (ctx.request.path !== htmlServerPath) {
       await next()
       return
     }
+
+    console.log(this.getGenerateTemplate(mockPath))
 
     ctx.body = this.getGenerateTemplate(mockPath)
     return
