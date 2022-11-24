@@ -1,0 +1,31 @@
+{
+  "name": "express-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "express":"nodemon express.js",
+    "koa":"nodemon koa.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "redstar08",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "crypto-js": "^4.0.0",
+    "express": "^4.17.1",
+    "express-http-proxy": "^1.6.3",
+    "formidable": "^1.2.2",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.13.4",
+    "local-mock-middleware": "^1.0.6",
+    "lodash": "^4.17.20",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "redis": "^3.1.1",
+    "uuid": "^8.3.2",
+    "validate": "^5.1.0",
+    "xss": "^1.0.8"
+  },
+  "devDependencies": {}
+}

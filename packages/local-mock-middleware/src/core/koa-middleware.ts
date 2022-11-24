@@ -1,5 +1,5 @@
 import { MiddlewareOptions } from 'types'
-import { defaultConfig, generateTemplate } from './constants'
+import { defaultConfig } from './constants'
 
 const koaMiddleware = (options = defaultConfig) => {
   options = Object.assign(defaultConfig, options)
@@ -14,11 +14,12 @@ const koaMiddleware = (options = defaultConfig) => {
       // console.log('koaMiddleware --->>> ', ctx.method, ctx.request.path, ctx?.query, ctx?.headers)
 
       if (isGet && isHtmlType && hasLocalMockQuery) {
-        const entry = ctx.query[key] || ''
-        const extraHtml = injectHtml(ctx)
-        const template = generateTemplate(entry, extraHtml)
+        // const entry = ctx.query[key] || ''
+        // const extraHtml = injectHtml(ctx)
+        // const template = generateTemplate(entry, extraHtml)
 
-        ctx.body = template
+        // ctx.body = template
+        ctx.body = '111'
 
         return true
       }

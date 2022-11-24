@@ -4,6 +4,14 @@ export declare type MiddlewareOptions = {
   injectHtml?: (...args) => string
 }
 
+export declare type LocalMockProxyDefaultConfig = {
+  isLocalMockProxyOpen: boolean
+  localMockParamsName?: string
+  htmlPort?: number
+  htmlServerPath?: string
+  htmlHost?: string
+}
+
 export declare function generateTemplate(entry: string, extraHtml: string): string
 
 export declare function expressMiddleware<T>(options: MiddlewareOptions): T
