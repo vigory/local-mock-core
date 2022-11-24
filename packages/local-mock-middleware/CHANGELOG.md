@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.7-beta.3](https://github.com/vigory/local-mock-core/compare/local-mock-middleware@1.0.7-beta.2...local-mock-middleware@1.0.7-beta.3) (2022-11-24)
+
+### Bug Fixes
+
+- 修复 koa 无法路径判断问题 ([206bac3](https://github.com/vigory/local-mock-core/commit/206bac358e83be8c3d9cc06fee94cdd3db866692))
+
 ## [1.0.7-beta.2](https://github.com/vigory/local-mock-core/compare/local-mock-middleware@1.0.7-beta.0...local-mock-middleware@1.0.7-beta.2) (2022-11-24)
 
 ### Features
