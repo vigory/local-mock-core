@@ -5,8 +5,19 @@ const localMock: any = {}
 
 // 初始化html服务
 localMock.createLocalHtmlProxy = function () {
-  const { htmlPort: port, htmlServerPath: path, localMockParamsName, injectHtml } = this.localMockOptions
+  const {
+    htmlPort: port,
+    htmlServerPath: path,
+    localMockParamsName,
+    injectHtml,
+    isLocalMockProxyOpen,
+  } = this.localMockOptions
   const _this = this
+
+  if (isLocalMockProxyOpen === false) {
+    return
+  }
+
   http
     .createServer(function (request, response) {
       const urlParsed = url.parse(request.url, true)

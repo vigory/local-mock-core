@@ -1,9 +1,10 @@
-const url = require('url')
-
 const expressLocalMock: any = {}
 
 expressLocalMock.createExpressLocalHtmlProxy = function (app) {
   const { htmlServerPath, localMockParamsName, isLocalMockProxyOpen } = this.localMockOptions
+  if (isLocalMockProxyOpen === false) {
+    return
+  }
   const _this = this
 
   app.get(htmlServerPath, (req, res, next) => {
@@ -19,10 +20,9 @@ expressLocalMock.createExpressLocalHtmlProxy = function (app) {
   })
 }
 
-expressLocalMock.updateExpressConfig = function (client) {
+expressLocalMock.updateExpressPort = function (client) {
   try {
     const address = client.address()
-    this.localMockOptions.htmlHost = address.address
     this.localMockOptions.htmlPort = address.port
   } catch (error) {
     console.log(error)
