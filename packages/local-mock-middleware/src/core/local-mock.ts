@@ -9,13 +9,17 @@ const mixin = require('merge-descriptors')
 function createLockMock(options = {}) {
   try {
     const localMock: any = function () {}
-    localMock.localMockOptions = { ...localMockProxyDefaultConfig, ...options }
+    const localMockOptions = { ...localMockProxyDefaultConfig, ...options }
+    localMock.localMockOptions = localMockOptions
     mixin(localMock, basic, false)
     mixin(localMock, proxyProto, false)
     mixin(localMock, expressProto, false)
     mixin(localMock, koaProto, false)
 
-    localMock.initHttp()
+    if (localMockOptions.isLocalMockProxyOpen !== false) {
+      localMock.initHttp()
+    }
+
     return localMock
   } catch (error) {
     return {
