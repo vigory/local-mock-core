@@ -1,28 +1,27 @@
-// 引入express框架
 const express = require('express')
 const proxy = require('express-http-proxy')
-const { localMockProxy, expressMiddleware } = require('local-mock-middleware')
+const createLockMock = require('local-mock-middleware')
 
-localMockProxy()
+const localMock = createLockMock()
 
 const app = express()
 
-const bodyParser = require('body-parser')
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
-
-app.get('/test', function (req, res, next) {
-  expressMiddleware({
-    isLocalMockProxyOpen: false,
-  })(req, res, next)
+app.all('/*', (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Headers', '*')
+  res.setHeader('Access-Control-Allow-Methods', 'OPTIONS,GET,HEAD,PUT,POST,DELETE,PATCH')
+  res.setHeader('Access-Control-Allow-Credentials', 'true')
+  next()
 })
 
-app.use(function (req, res, next) {
-  // 例如此时应当要代理到百度，但是因为配置了localMockProxy,会自动代理到localMock后面的url上
-  proxy('127.0.0.1:9090')(req, res, next)
+localMock.createExpressLocalHtmlProxy(app)
+
+app.get('*', function (req, res, next) {
+  proxy('http://127.0.0.1:9000')(req, res, next)
 })
 
 // 监听端口
-app.listen(3001)
-// 控制台提示输出
-console.log('server is runing at localhost:' + 3001)
+const client = app.listen(3001, function () {
+  localMock.updateExpressPort(client)
+  console.log('express start sucessfully  ...')
+})
