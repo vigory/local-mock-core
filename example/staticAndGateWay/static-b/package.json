@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "eruda": "^2.6.1",
+    "local-mock-easy": "^1.0.6",
     "vue": "^3.0.0"
   },
   "devDependencies": {

@@ -1,7 +1,7 @@
 <template>
 <div>
-  <div>我是static-a 模块代码</div>
-  <div>I am static-a</div>
+  <div>我是static-a 正式环境</div>
+  <div>I am static-a official env</div>
 </div>
 </template>
 

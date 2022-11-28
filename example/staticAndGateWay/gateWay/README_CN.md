@@ -1,0 +1,2 @@
+# staticAndGateWay
+hdhsbhdjs

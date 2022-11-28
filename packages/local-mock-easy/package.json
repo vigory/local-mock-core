@@ -7,7 +7,7 @@
   "types": "types/index.d.ts",
   "unpkg": "dist/index.global.js",
   "jsdelivr": "dist/index.global.js",
-  "author": "redstar08",
+  "author": "vigory",
   "license": "MIT",
   "homepage": "https://github.com/vigory/local-mock-core",
   "repository": "https://github.com/vigory/local-mock-core",
