@@ -67,6 +67,7 @@ const localMockplugin = vconsoleLocalMock(VConsole, {
   key: 'myLocalMock',
   state: 0,
   entry: 'http://localhost:8080',
+  fast:0
 })
 
 vconsole.addPlugin(localMockplugin)
@@ -101,6 +102,7 @@ vconsole.addPlugin(localMockplugin)
 | state | 插件开启状态                                                 | `number` | `0`                     |
 | entry | 本地资源入口                                                 | `string` | `http://localhost:8080` |
 | key   | url 上拼接的参数名称 <br> `http://example.com?{key}={entry}` | `string` | `localMock`             |
+| fast    | 快速开启关闭入口 | `number` | `0` 
 
 ## FQA
 
