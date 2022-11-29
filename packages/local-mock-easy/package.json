@@ -12,7 +12,7 @@
   "homepage": "https://github.com/vigory/local-mock-core",
   "repository": "https://github.com/vigory/local-mock-core",
   "scripts": {
-    "start": "rollup -w --environment NODE_ENV:development --config scripts/rollup.config.dev.ts --configPlugin @rollup/plugin-typescript",
+    "start": "rollup -w --environment NODE_ENV:development --config scripts/rollup.config.dev.ts --configPlugin @rollup/plugin-typescript --watch",
     "build": "rollup --environment NODE_ENV:production --config scripts/rollup.config.prod.ts --configPlugin @rollup/plugin-typescript",
     "patch": "npm --no-git-tag-version version patch",
     "test": "jest"

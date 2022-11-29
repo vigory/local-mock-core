@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div>我是static-a 正式环境</div>
+  <div>我是static-a 官方环境</div>
   <div>I am static-a official env</div>
 </div>
 </template>

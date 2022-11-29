@@ -9,8 +9,14 @@ export enum Status {
   ON = 1,
 }
 
+export enum Fast {
+  OFF = 0,
+  ON = 1,
+}
+
 export const defaultConfig: LocalMockOptions = {
   key: 'localMock',
   state: Status.OFF,
   entry: 'http://localhost:8080',
+  fast: Fast.OFF,
 }

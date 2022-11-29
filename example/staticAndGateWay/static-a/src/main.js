@@ -3,7 +3,6 @@ import App from './App.vue'
 import eruda from "eruda"
 import { erudaLocalMock } from 'local-mock-easy'
 
-
 createApp(App).mount('#app')
 eruda.init()
 const localMockplugin = erudaLocalMock(eruda, {
@@ -11,3 +10,4 @@ const localMockplugin = erudaLocalMock(eruda, {
 })
 
 eruda.add(localMockplugin)
+ 

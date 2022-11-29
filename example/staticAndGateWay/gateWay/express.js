@@ -21,7 +21,7 @@ app.get('*', function (req, res, next) {
 })
 
 // 监听端口
-const client = app.listen(3001, function () {
+const client = app.listen(3000, function () {
   localMock.updateExpressPort(client)
   console.log('express start sucessfully  ...')
 })

@@ -18,6 +18,7 @@
     "formidable": "^1.2.2",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.13.4",
+    "koa-better-http-proxy": "^0.2.10",
     "lodash": "^4.17.20",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",

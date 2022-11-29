@@ -7,7 +7,14 @@ const app = new Koa()
 const localMock = createLockMock()
 
 localMock.createKoaLocalHtmlProxy(app)
-app.use(proxy('http://127.0.0.1:9090'))
+app.use(async (ctx, next) => {
+  if (ctx.method !== 'GET') {
+    next()
+    return
+  }
+  await proxy('http://127.0.0.1:9000')(ctx)
+  return
+})
 // response
 app.use((ctx) => {
   ctx.body = 'Hello Koa'

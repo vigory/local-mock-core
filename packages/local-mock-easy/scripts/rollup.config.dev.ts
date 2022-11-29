@@ -9,7 +9,7 @@ export default {
     ...(baseConfig.plugins as Array<any>),
     serve({
       open: true,
-      port: '3000',
+      port: '3002',
       contentBase: '.',
       openPage: '/examples/index.html',
     }),
