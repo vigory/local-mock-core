@@ -3,6 +3,7 @@ export declare type LocalMockOptions = {
   state?: 0 | 1
   entry?: string
   fast?: 0 | 1
+  mode?: string
 }
 
 export declare function erudaLocalMock<T>(eruda, options: LocalMockOptions): T

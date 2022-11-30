@@ -103,7 +103,7 @@ const koaMiddleware = koaMiddleware(options)
 | htmlHost | 中转html的host |`string`  |"127.0.0.1"| 
 | htmlPort | 中转html的port |`number`  | 8899 | 
 | htmlServerPath | 中转html的路径 |`number`  | "/local-mock-html" | 
-| injectHtml | 注入的额外字符串的函数                                    | `(req, res) => string` | ""          |
+| injectHtml | 仅对代理模式有效。注入的额外字符串的函数                                    | `(req, res) => string` | ""          |
 ## FQA
 
 #### 什么时候开启 local-mock-middleware 中间件？

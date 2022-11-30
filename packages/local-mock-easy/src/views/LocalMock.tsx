@@ -1,15 +1,14 @@
 /** @jsx h */
 import { h, render } from 'preact'
 import { useState, useEffect } from 'preact/hooks'
-import { MOCK_KEY, URLREG, Status, Fast, defaultConfig } from '@/core/constants'
+import { MOCK_KEY, URLREG, Status, Fast, defaultConfig, Mode, ModeDes, clientFlag } from '@/core/constants'
 import { getStorage, setStorage, deleteStorage, debounce, getCurrentURLInfo } from '@/core/utils'
 import styles from '@/core/styles'
 
 const LocalMock = () => {
   const localConfigFromStorage = getStorage(MOCK_KEY) || defaultConfig
-  const { key, state, entry, fast } = localConfigFromStorage
-
   const [localConfig, setLocalConfig] = useState(localConfigFromStorage)
+  const { key, state, entry, fast, mode } = localConfig
   const [urlInfo, setUrlInfo] = useState('')
   const [errorInfo, setErrorInfo] = useState('')
   const [successInfo, setSuccessInfo] = useState('')
@@ -19,8 +18,29 @@ const LocalMock = () => {
     const urlInfo = getCurrentURLInfo()
     setUrlInfo(urlInfo)
     initFastEntry(handleToggle)
+    staticModeHandle()
   }, [location.href])
 
+  // handle with static mode
+  const staticModeHandle = () => {
+    if (mode !== Mode.Static || __window[clientFlag] === true) {
+      return
+    }
+
+    const currentURL = new URL(location.href)
+    const { searchParams } = currentURL
+    const target = searchParams.get(key)
+    if (target) {
+      fetch(target).then((obj) => {
+        obj.text().then((text) => {
+          const newText = text.replace('<head>', `<head><script>var ${clientFlag} = true</script>`)
+          __window.document.open()
+          __window.document.write(newText)
+          __window.document.close() // ensure document.readyState = "complete"
+        })
+      })
+    }
+  }
   const ping = () => {
     return new Promise((resolve, reject) => {
       if (!URLREG.test(inputEntry)) {
@@ -52,6 +72,11 @@ const LocalMock = () => {
     })
   }
 
+  const modeChange = (mode) => {
+    setLocalConfig({ ...localConfig, mode })
+    setStorage(MOCK_KEY, { ...localConfig, mode })
+  }
+
   // 点击切换按钮
   const handleToggle = () => {
     const currentURL = new URL(location.href)
@@ -80,7 +105,6 @@ const LocalMock = () => {
   }
 
   const handleFastModuleChange = () => {
-    console.log('fast', fast)
     if (fast === Fast.ON) {
       setLocalConfig({ ...localConfig, fast: Fast.OFF })
       setStorage(MOCK_KEY, { ...localConfig, fast: Fast.OFF })
@@ -88,7 +112,6 @@ const LocalMock = () => {
       setLocalConfig({ ...localConfig, fast: Fast.ON })
       setStorage(MOCK_KEY, { ...localConfig, fast: Fast.ON })
     }
-
     initFastEntry(handleToggle)
   }
 
@@ -101,11 +124,34 @@ const LocalMock = () => {
           <span>{state === Status.ON ? 'ON' : 'OFF'}</span>
         </div>
         <div style={styles.LocalMockItem}>
-          <span>快捷模式：</span>
+          <span>快捷入口：</span>
           <span>{fast === Fast.ON ? 'ON' : 'OFF'}</span>
           <button style={styles.LocalMockButtonFast} onClick={debounce(handleFastModuleChange, 300)}>
             切换
           </button>
+        </div>
+        <div style={styles.LocalMockItem}>
+          <span>调试模式：</span>
+          <div>
+            <input
+              type="radio"
+              id="agent"
+              name="local-mock-mode"
+              checked={mode === Mode.Agent}
+              onClick={() => modeChange(Mode.Agent)}
+            />
+            <label htmlFor="agent">{ModeDes.Agent}</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="static"
+              name="local-mock-mode"
+              checked={mode === Mode.Static}
+              onClick={() => modeChange(Mode.Static)}
+            />
+            <label htmlFor="static">{ModeDes.Static}</label>
+          </div>
         </div>
         <div style={styles.LocalMockItem}>
           <span>本地地址：</span>
@@ -150,7 +196,9 @@ export function initFastEntry(changeStateHandle) {
   const $ele = document.getElementById(id)
   if (data.fast !== Fast.ON) {
     if ($ele && document) {
-      console.log('document', document)
+      $ele.removeEventListener('click', () => {
+        changeStateHandle && changeStateHandle()
+      })
       $ele.parentNode.removeChild($ele)
     }
     return
