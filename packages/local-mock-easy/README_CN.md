@@ -102,11 +102,12 @@ vconsole.addPlugin(localMockplugin)
 | state | 插件开启状态                                                 | `number` | `0`                     |
 | entry | 本地资源入口                                                 | `string` | `http://localhost:8080` |
 | key   | url 上拼接的参数名称 <br> `http://example.com?{key}={entry}` | `string` | `localMock`             |
-| fast    | 快速开启关闭入口 | `number` | `0` 
+| fast    | 快速开启关闭入口 | `number` | `0` |
+| mode | 模式，支持代理转发模式和静态资源模式 agent：代理模式 static：静态资源模式｜ `string`｜`agent` ｜
 
 ## FQA
 
-如果你遇到问题请联系我们或者提 issues
+如果你遇到问题请联系我们 QQ群619705019 或者提 issues
 
 #### 为什么要将 devServer 改成 IP 地址的形式？
 

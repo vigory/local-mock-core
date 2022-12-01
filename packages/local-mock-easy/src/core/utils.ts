@@ -1,4 +1,4 @@
-import { VConsoleLocalMockWrapper } from './styles'
+import { VConsoleLocalMockWrapper } from '../views/localMockStyles'
 
 export const getStorage = (key) => {
   try {
@@ -52,4 +52,8 @@ export const createVConsoleWrapper = () => {
   const localMockDom = document.createElement('div')
   Object.assign(localMockDom.style, VConsoleLocalMockWrapper)
   return localMockDom
+}
+
+export const pxToNum = function (str) {
+  return parseFloat(str.replace('px', ''))
 }

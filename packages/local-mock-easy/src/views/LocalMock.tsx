@@ -3,7 +3,8 @@ import { h, render } from 'preact'
 import { useState, useEffect } from 'preact/hooks'
 import { MOCK_KEY, URLREG, Status, Fast, defaultConfig, Mode, ModeDes, clientFlag } from '@/core/constants'
 import { getStorage, setStorage, deleteStorage, debounce, getCurrentURLInfo } from '@/core/utils'
-import styles from '@/core/styles'
+import styles from '@/views/localMockStyles'
+import FastEntry from './FastEntry'
 
 const LocalMock = () => {
   const localConfigFromStorage = getStorage(MOCK_KEY) || defaultConfig
@@ -17,13 +18,13 @@ const LocalMock = () => {
   useEffect(() => {
     const urlInfo = getCurrentURLInfo()
     setUrlInfo(urlInfo)
-    initFastEntry(handleToggle)
     staticModeHandle()
+    initFastEntry(handleToggle)
   }, [location.href])
 
   // handle with static mode
   const staticModeHandle = () => {
-    if (mode !== Mode.Static || __window[clientFlag] === true) {
+    if (mode !== Mode.Static || window[clientFlag] === true) {
       return
     }
 
@@ -34,9 +35,9 @@ const LocalMock = () => {
       fetch(target).then((obj) => {
         obj.text().then((text) => {
           const newText = text.replace('<head>', `<head><script>var ${clientFlag} = true</script>`)
-          __window.document.open()
-          __window.document.write(newText)
-          __window.document.close() // ensure document.readyState = "complete"
+          window.document.open()
+          window.document.write(newText)
+          window.document.close() // ensure document.readyState = "complete"
         })
       })
     }
@@ -53,13 +54,11 @@ const LocalMock = () => {
         .then(() => {
           setErrorInfo('')
           setSuccessInfo('Success!')
-          // alert('ok')
           resolve('Success!')
         })
         .catch(() => {
           setErrorInfo('获取不到入口文件！')
           setSuccessInfo('')
-          // alert('Can not fetch entry url!')
           reject(new Error('Can not fetch entry url!'))
         })
     })
@@ -82,7 +81,6 @@ const LocalMock = () => {
     const currentURL = new URL(location.href)
     const { searchParams } = currentURL
     if (state === Status.ON) {
-      // 关闭后刷新
       setStorage(MOCK_KEY, { ...localConfig, state: Status.OFF })
       searchParams.delete(key)
       location.href = currentURL.href
@@ -91,14 +89,12 @@ const LocalMock = () => {
         .then(() => {
           setStorage(MOCK_KEY, { ...localConfig, state: Status.ON, entry: inputEntry })
           searchParams.set(key, inputEntry)
-          // alert('手动开启成功')
           console.log('local-mock-easy is handle opened!')
           location.href = currentURL.href
         })
         .catch((error) => {
           console.log(error)
           searchParams.delete(key)
-          // alert('开启失败, 获取不到入口文件！')
           console.log('local-mock-easy open fail!')
         })
     }
@@ -112,12 +108,10 @@ const LocalMock = () => {
       setLocalConfig({ ...localConfig, fast: Fast.ON })
       setStorage(MOCK_KEY, { ...localConfig, fast: Fast.ON })
     }
-    initFastEntry(handleToggle)
   }
 
   return (
     <div style={styles.LocalMockWrapper}>
-      {/* Content */}
       <div style={styles.LocalMockContent}>
         <div style={styles.LocalMockItem}>
           <span>连接状态：</span>
@@ -183,44 +177,18 @@ const LocalMock = () => {
     </div>
   )
 }
-let __window
+
 export const renderLocalMock = (dom) => {
-  __window = window
   render(<LocalMock />, dom)
 }
 
 export function initFastEntry(changeStateHandle) {
-  const document = __window.document
-  const id = 'local-mock-entry-fast-btn'
   const data = getStorage(MOCK_KEY) || defaultConfig
-  const $ele = document.getElementById(id)
-  if (data.fast !== Fast.ON) {
-    if ($ele && document) {
-      $ele.removeEventListener('click', () => {
-        changeStateHandle && changeStateHandle()
-      })
-      $ele.parentNode.removeChild($ele)
-    }
-    return
-  }
+  const id = 'local-mock-entry-fast-content'
+  const $el = document.getElementById(id) || document.createElement('div')
+  document.body.appendChild($el)
 
-  const toLocalBtn = document.getElementById(id) || document.createElement('div')
-  toLocalBtn.id = id
-  toLocalBtn.draggable = true
-  toLocalBtn.innerHTML = data.state == Status.ON ? '退出本地调试' : '开启本地调试'
-  toLocalBtn.setAttribute(
-    'style',
-    'cursor:pointer;color:#5f6368ff;background-color:rgba(153, 204, 255, .8);font-size:14px;position: fixed;padding:5px 10px;border-radius:0 0 10px 10px',
-  )
-
-  document.body.appendChild(toLocalBtn)
-
-  toLocalBtn.addEventListener('click', () => {
-    changeStateHandle && changeStateHandle()
-  })
-
-  toLocalBtn.style.left = '20px'
-  toLocalBtn.style.top = '0px'
+  render(<FastEntry state={data.state} fast={data.fast} onChange={changeStateHandle} />, $el)
 }
 
 export default LocalMock
