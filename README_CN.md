@@ -36,7 +36,7 @@ LocalMock 旨在解决上述开发过程中遇到的痛点，相比一般的本�
 
 本模式适用于有网关层处理 Auth2.0 授权、接口转发、静态资源转发的情况，通常在拿到授权信息之后将授权信息注入到入口文件 html 中。该方案需要同时在 nodejs 服务端安装 [local-mock-middleware](https://www.npmjs.com/package/local-mock-middleware)用于将远程 html 文件流替换成本地 `devServer` 的入口文件，在 H5 静态资源端安装 [local-mock-easy](https://www.npmjs.com/package/local-mock-easy)作为调试面板的插件方便使用。
 
-具体使用的 example 请参考 [staticAndGateWay](./example/staticAndGateWay/gateWay/README_CN.md)
+具体使用的 example 请参考 [staticAndGateWay](./example/staticAndGateWay/README_CN.md)
 
 #### 1. nodejs 端安装 local-mock-middleware 中间件
 
@@ -89,6 +89,8 @@ eruda.add(localMockplugin)
 ### 二、 静态资源模式
 
 本模式适用于无需网关层的业务页面通过替换静态资源入口实现调试。如：将业务页面 `remote-domain.com/pages/a` 内容替换成本地 `devServer` 的页面 `localhost:8080/pages/a`
+
+具体使用的 example 请参考 [static](./example/static/README_CN.md)
 
 #### 1. H5 前端安装 local-mock-easy 面板插件
 
