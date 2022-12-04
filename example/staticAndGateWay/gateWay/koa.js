@@ -4,7 +4,9 @@ const createLockMock = require('local-mock-middleware')
 
 const app = new Koa()
 
-const localMock = createLockMock()
+const localMock = createLockMock({
+  isLocalMockProxyOpen: true,
+})
 
 localMock.createKoaLocalHtmlProxy(app)
 app.use(async (ctx, next) => {

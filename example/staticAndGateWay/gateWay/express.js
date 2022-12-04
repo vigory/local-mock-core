@@ -2,7 +2,9 @@ const express = require('express')
 const proxy = require('express-http-proxy')
 const createLockMock = require('local-mock-middleware')
 
-const localMock = createLockMock()
+const localMock = createLockMock({
+  isLocalMockProxyOpen: true,
+})
 
 const app = express()
 

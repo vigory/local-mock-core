@@ -27,7 +27,7 @@ koaLocalMock.createKoaLocalHtmlProxy = function (app) {
       return
     }
 
-    console.log(this.getGenerateTemplate(mockPath))
+    // console.log(this.getGenerateTemplate(mockPath))
 
     ctx.body = this.getGenerateTemplate(mockPath)
     return

@@ -1,13 +1,14 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import eruda from "eruda"
+import eruda from 'eruda'
 import { erudaLocalMock } from 'local-mock-easy'
 
 createApp(App).mount('#app')
-eruda.init()
-const localMockplugin = erudaLocalMock(eruda, {
-    entry:"http://localhost:9001"
+
+eruda.init({ tool: 'console' })
+
+const localMockPlugin = erudaLocalMock(eruda, {
+  entry: 'http://localhost:9001',
 })
 
-eruda.add(localMockplugin)
- 
+eruda.add(localMockPlugin).show('localmock').show()
