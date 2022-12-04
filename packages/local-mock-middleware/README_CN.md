@@ -2,7 +2,7 @@
 
 <a href="https://www.npmjs.com/package/local-mock-middleware"><img src="https://img.shields.io/npm/v/local-mock-middleware.svg?sanitize=true" alt="Version"></a>
 
-# `local-mock-middleware`
+# local-mock-middleware
 
 local-mock-middleware 是一个 node 端的调试中间件，目前支持 [express](https://www.npmjs.com/package/express) 和 [koa](https://www.npmjs.com/package/koa).
 
@@ -12,7 +12,8 @@ local-mock-middleware 是一个 node 端的调试中间件，目前支持 [expre
 1. 在 H5 客户端安装 [local-mock-easy](https://www.npmjs.com/package/local-mock-easy) 插件
 
 ## 快速上手
-example 代码见 [staticAndGateWay](./example/staticAndGateWay/gateWay/README_CN.md) 
+
+example 请参考 [staticAndGateWay 使用 demo](/example/staticAndGateWay/README_CN.md)
 
 ### 安装
 
@@ -29,16 +30,19 @@ yarn add local-mock-middleware
 const express = require('express')
 const createLockMock = require('local-mock-middleware')
 
+const app = express()
+
+// 1. 创建 localMock 实例
 const localMock = createLockMock({
-  isLocalMockProxyOpen : process.env.NODE_ENV === 'dev', // 请勿在生产环境中开启！！！
+  isLocalMockProxyOpen: process.env.NODE_ENV === 'dev', // 请勿在生产环境中开启！！！,
+  htmlPort: 3000,
 })
 
-const app = express()
+// 2. 开启静态资源 html 转发
 localMock.createExpressLocalHtmlProxy(app)
 
-const client = app.listen(3000, function () {
-  localMock.updateExpressPort(client)
-  console.log('express start sucessfully  ...')
+app.listen(3000, function () {
+  console.log('express start sucessfully  port 3000...')
 })
 ```
 
@@ -48,12 +52,15 @@ const client = app.listen(3000, function () {
 const Koa = require('koa')
 const createLockMock = require('local-mock-middleware')
 
-const localMock = createLockMock({
-  isLocalMockProxyOpen: process.env.NODE_ENV === 'dev', // 请勿在生产环境中开启！！！
-})
-
 const app = new Koa()
 
+// 1. 创建 localMock 实例
+const localMock = createLockMock({
+  isLocalMockProxyOpen: process.env.NODE_ENV === 'dev', // 请勿在生产环境中开启！！！
+  htmlPort: 3001,
+})
+
+// 2. 开启静态资源 html 转发
 localMock.createKoaLocalHtmlProxy(app)
 
 // response
@@ -62,17 +69,24 @@ app.use((ctx) => {
 })
 
 app.listen(3001, function () {
-  localMock.updateKoaPort(client)
-  console.log('koa start sucessfully  ...')
+  console.log('koa start sucessfully  port 3001...')
 })
 ```
 
-> 你可以通过配置 `options.key` ；来修改需要拦截的参数名称，如：http://example.com?myLocalMock={entry}  
-> 你可以通过配置 `injectHtml` 函数，用于插入自定义的字符串到 html
+#### 更多使用
+
+> 通过配置 `localMockParamsName` ；来修改需要拦截的参数名称，如：http://example.com?myLocalMock={entry}  
+> 通过配置 `htmlHost`，用于自定义 html 转发的 host  
+> 通过配置`htmlPort`，用于自定义 html 转发的 port  
+> 通过配置 `htmlServerPath`，用于自定义 html 转发的 path
 
 ```js
 const options = {
-  key: 'myLocalMock',
+  localMockParamsName: 'myLocalMock',
+  isLocalMockProxyOpen: process.env.NODE_ENV === 'dev', // 请勿在生产环境中开启！！！
+  htmlHost: '127.0.0.1',
+  htmlPort: 3000,
+  htmlServerPath: '/local-mock-html',
   injectHtml: (target) => {
     return `<script type="text/javascript">
         alert(${target})
@@ -80,30 +94,36 @@ const options = {
   },
 }
 
-const middleware = expressMiddleware(options)
+const localMock = createLockMock(options)
 
-const koaMiddleware = koaMiddleware(options)
+const client = app.listen(3000, function () {
+  // 可选，用于自动更新 htmlPort 为 client.address().port
+  localMock.updateExpressPort(client)
+  console.log('express start sucessfully  ...')
+})
 ```
+
 ## Function API
 
-| function     | desc                                                      | 
-| :--------- | :-------------------------------------------------------- | 
-| createLockMock | localMock实例化 | 
-| createLockMock.createExpressLocalHtmlProxy | express 中间件，使用后会在增加html转发相关处理 | 
-| createLockMock.updateExpressPort | express 模式自动更新htmlPort |
-| createLockMock.createKoaLocalHtmlProxy | koa 中间件，使用后会在增加html转发相关处理 | 
-| createLockMock.updateKoaPort | koa 中间件，使用后会在增加html转发相关处理 | 
+| function                          | desc                               | type               |
+| :-------------------------------- | :--------------------------------- | :----------------- |
+| `createLockMock`                  | localMock 实例化                   | `(options) => ins` |
+| `ins.createExpressLocalHtmlProxy` | express 中间件，用于处理 html 转发 | `(app) => void`    |
+| `ins.updateExpressPort `          | express 自动更新 htmlPort          | `(client) => void` |
+| `ins.createKoaLocalHtmlProxy `    | koa 中间件，，用于处理 html 转发   | `(app) => void`    |
+| `ins.updateKoaPort `              | koa 自动更新 htmlPort              | `(client) => void` |
 
 ## Options API
 
-| params     | desc                                                      | type                   | default     |
-| :--------- | :-------------------------------------------------------- | :--------------------- | :---------- |
-| isLocalMockProxyOpen     | 中间件的开启状态(默认 false 表示是一个无任何逻辑的中间件) | boolean                | false       |
-| localMockParamsName        | 需要拦截的参数名<br> `http://example.com?{localMockParamsName}={entry}`   | `string`               | `localMock` |
-| htmlHost | 中转html的host |`string`  |"127.0.0.1"| 
-| htmlPort | 中转html的port |`number`  | 8899 | 
-| htmlServerPath | 中转html的路径 |`number`  | "/local-mock-html" | 
-| injectHtml | 仅对代理模式有效。注入的额外字符串的函数                                    | `(req, res) => string` | ""          |
+| params | desc | type | default |
+| :-- | :-- | :-- | :-- |
+| isLocalMockProxyOpen | 中间件的开启状态(默认 false 表示是一个无任何逻辑的中间件) | `boolean` | `false` |
+| localMockParamsName | 需要拦截的参数名<br /> `http://example.com?{localMockParamsName}={entry}` | `string` | `localMock` |
+| htmlHost | 中转 html 的 host | `string` | "127.0.0.1" |
+| htmlPort | 中转 html 的 port | `number` | 8899 |
+| htmlServerPath | 中转 html 的路径 | `number` | "/local-mock-html" |
+| injectHtml | 仅对代理模式有效。注入的额外字符串的函数 | `(target) => string` | "" |
+
 ## FQA
 
 #### 什么时候开启 local-mock-middleware 中间件？
@@ -116,4 +136,4 @@ const koaMiddleware = koaMiddleware(options)
 
 #### local-mock-middleware 做了什么事情 ?
 
-如果 `req.query` 包含 isLocalMockProxyOpen `localMock` 或者配置的 `options.isLocalMockProxyOpen` local-mock-middleware 会自动生成并返回一个包含 mock 函数的 html 文件, mock 函数会将 `req.query[key]` 做为页面的入口文件去 fetch , 然后通过 `document.write()` 去重写当前页面
+如果 `req.query` 包含 `localMock` 或者配置的 `options.localMockParamsName` local-mock-middleware 会自动生成并返回一个包含 mock 函数的 html 文件, mock 函数会将 `req.query[key]` 做为页面的入口文件去 fetch , 然后通过 `document.write()` 去重写当前页面

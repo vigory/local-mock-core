@@ -8,7 +8,7 @@ LocalMock 顾名思义，指的是本地 mock 开发环境，在业务环境域�
 
 👍 同一个正式环境的 url，可根据需要访问本地静态资源
 
-<img width="500" src="./docs/assets/changjing.png" alt="changjing" />
+<img width="600" src="./docs/assets/sence-example.png" alt="sence-example" />
 
 ## 开发 H5 页面时存在的痛点
 
@@ -20,6 +20,8 @@ LocalMock 顾名思义，指的是本地 mock 开发环境，在业务环境域�
 1. 访问 `remote-domain.com` 后，经过 Charles 代理、网关层转发、`devServer` 最终在 APP 端的 webview 展示页面
 
 > 😫 呜呼~，完成以上步骤之后，终于可以开始愉快的开发 H5 页面了，但是这样的开发和调试步骤真的愉快吗 🤔？？？
+
+<img width="600" src="./docs/assets/h5-gateway.png" alt="h5-gateway" />
 
 ## LocalMock 解决了什么问题？
 
