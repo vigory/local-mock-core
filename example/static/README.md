@@ -7,7 +7,7 @@ English | [简体中文](./README_CN.md)
 - `static-a` is the business domain environment. (pretend static resources that have been deployed on the server.)
 - `static-b` is the local development environment. (pretend local static resources while debugging)
 
-<img width="600" src="https://github.com/vigory/local-mock-core/docs/assets/static-example.png" alt="static-example" />
+<img width="600" src="https://raw.githubusercontent.com/vigory/docs-static/main/local-mock-core/assets/images/static-example.png" alt="static-example" />
 
 ## Install & start
 

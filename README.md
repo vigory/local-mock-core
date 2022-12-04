@@ -8,7 +8,7 @@ LocalMock is a mock scheme for local development environment, at business domain
 
 The URL of the same production environment that can access local static resources as needed.
 
-<img width="600" src="./docs/assets/sence-example.png" alt="sence-example" />
+<img width="600" src="https://raw.githubusercontent.com/vigory/docs-static/main/local-mock-core/assets/images/sence-example.png" alt="sence-example" />
 
 ## Pain points when developing H5 pages
 
@@ -21,7 +21,7 @@ In business development, we often encounter the problem that the local developme
 
 > 😫 woohoo~, after completing the above steps, you can finally start developing H5 pages happily, but are such development and debugging steps really make you enjoyable 🤔 ???
 
-<img width="600" src="./docs/assets/h5-gateway.png" alt="h5-gateway" />
+<img width="600" src="https://raw.githubusercontent.com/vigory/docs-static/main/local-mock-core/assets/images/h5-gateway.png" alt="h5-gateway" />
 
 ## What problem does LocalMock solve?
 

@@ -10,7 +10,7 @@ English | [简体中文](./README_CN.md)
 
 > gateWay as an entry, it handles interface and static resource forwarding. (Forward resources in `static-a`)
 
-<img width="600" src="https://github.com/vigory/local-mock-core/docs/assets/h5-gateway.png" alt="h5-gateway" />
+<img width="600" src="https://raw.githubusercontent.com/vigory/docs-static/main/local-mock-core/assets/images/h5-gateway.png" alt="h5-gateway" />
 
 ## Install & start
 

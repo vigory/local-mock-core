@@ -20,7 +20,7 @@ local-mock-easy 是一个 H5 端的调试插件，目前支持 [eruda](https://w
 - 🌻**一键开启，调试方便**，通过 localMock 插件，一键即可在真机上开启调试
 - ✌️**支持静态和网关两种场景**，支持 node 网关代理**转发静态资源**和外网域名**指向本地静态资源**两种模式
 
-<img width="300" src="https://github.com/vigory/local-mock-core/docs/assets/local-mock-easy-plugin.png" alt="local-mock-easy-plugin" />
+<img width="300" src="https://raw.githubusercontent.com/vigory/docs-static/main/local-mock-core/assets/images/local-mock-easy-plugin.png" alt="local-mock-easy-plugin" />
 
 ## 快速上手
 
@@ -55,7 +55,9 @@ import { erudaLocalMock } from 'local-mock-easy'
 
 eruda.init()
 
-const localMockplugin = erudaLocalMock(eruda, {})
+const localMockplugin = erudaLocalMock(eruda, {
+  mode: 'static', // 静态资源模式，无需 node
+})
 
 eruda.add(localMockplugin)
 // #!endif

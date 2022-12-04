@@ -20,7 +20,7 @@ Note: local-mock-easy is only the client (H5) part of [local-mock-core](https://
 - 🌻**One-click debugging**, through the local-mock-easy plugin, you can start debugging on the mobile machine with one click.
 - 🌻**Both static and gateway scenarios are supported**, nodejs gateway proxy forwarding static resources and public network domain map to local static resources are both supported.
 
-<img width="300" src="https://github.com/vigory/local-mock-core/docs/assets/local-mock-easy-plugin.png" alt="local-mock-easy-plugin" />
+<img width="300" src="https://raw.githubusercontent.com/vigory/docs-static/main/local-mock-core/assets/images/local-mock-easy-plugin.png" alt="local-mock-easy-plugin" />
 
 ## Get Started
 

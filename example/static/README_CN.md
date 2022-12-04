@@ -7,7 +7,7 @@
 - `static-a` 表示业务域名环境（模拟已部署在服务器的静态资源）
 - `static-b` 表示本地开发环境（模拟在在本地开发调试的静态资源）
 
-<img width="600" src="https://github.com/vigory/local-mock-core/docs/assets/static-example.png" alt="static-example" />
+<img width="600" src="https://raw.githubusercontent.com/vigory/docs-static/main/local-mock-core/assets/images/static-example.png" alt="static-example" />
 
 ## 安装与启动
 

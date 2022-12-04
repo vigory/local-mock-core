@@ -10,7 +10,7 @@
 
 > gateWay 作为对外暴露的口子，会处理接口、静态资源转发（转发 static-a 中的资源）
 
-<img width="600" src="https://github.com/vigory/local-mock-core/docs/assets/h5-gateway.png" alt="h5-gateway" />
+<img width="600" src="https://raw.githubusercontent.com/vigory/docs-static/main/local-mock-core/assets/images/h5-gateway.png" alt="h5-gateway" />
 
 ## 安装与启动
 
