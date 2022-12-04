@@ -20,4 +20,4 @@ node_modules
 *.sln
 *.sw?
 
-package.lock
+package-lock.json
