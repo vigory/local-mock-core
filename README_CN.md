@@ -49,21 +49,19 @@ LocalMock 旨在解决上述开发过程中遇到的痛点，相比一般的本�
 const express = require('express')
 const createLockMock = require('local-mock-middleware')
 
-// 创建 localMock 实例
+const app = express()
+
+// 1. 创建 localMock 实例
 const localMock = createLockMock({
-  isLocalMockProxyOpen: process.env.NODE_ENV === 'dev', // 仅在dev环境启动
+  isLocalMockProxyOpen: process.env.NODE_ENV === 'dev', // 请勿在生产环境中开启！！！,
+  htmlPort: 3000,
 })
 
-const app = express()
-// 开启静态资源转发
+// 2. 开启静态资源 html 转发
 localMock.createExpressLocalHtmlProxy(app)
 
-app.use(middleware) // 其他中间件
-
-const client = app.listen(3000, function () {
-  // 可选操作，动态更新 port
-  localMock.updateExpressPort(client)
-  console.log('koa start sucessfully  ...')
+app.listen(3000, function () {
+  console.log('express start sucessfully  port 3000...')
 })
 ```
 
