@@ -6,7 +6,9 @@ English | [简体中文](/packages/local-mock-easy/README_CN.md)
 
 A easy debug plugin for [eruda](https://www.npmjs.com/package/eruda) and [vConsole](https://www.npmjs.com/package/vconsole).
 
-> Note: local-mock-easy is only the client (H5) part of [local-mock-core](https://github.com/vigory/local-mock-core), complete local-mock debugging solution needs to install [local-mock-middleware](https://www.npmjs.com/package/local-mock-middleware) on the server (nodejs) at the same time, follow steps:
+> local-mock full solution, reference [local-mock-core](https://github.com/vigory/local-mock-core)
+
+Note: local-mock-easy is only the client (H5) part of [local-mock-core](https://github.com/vigory/local-mock-core), complete local-mock debugging solution needs to install [local-mock-middleware](https://www.npmjs.com/package/local-mock-middleware) on the server (nodejs) at the same time, follow steps:
 
 1. Install [local-mock-middleware](https://www.npmjs.com/package/local-mock-middleware) on the nodejs server.
 1. Install local-mock-easy on the client.
@@ -16,6 +18,9 @@ A easy debug plugin for [eruda](https://www.npmjs.com/package/eruda) and [vConso
 - 🎉**without proxy**, you do not need to map domain to local. (like: Charles Map Remote）
 - 🚀**devServer only**, you do not need to start the node server at the same time.
 - 🌻**One-click debugging**, through the local-mock-easy plugin, you can start debugging on the mobile machine with one click.
+- 🌻**Both static and gateway scenarios are supported**, nodejs gateway proxy forwarding static resources and public network domain map to local static resources are both supported.
+
+<img width="300" src="https://github.com/vigory/local-mock-core/docs/assets/local-mock-easy-plugin.png" alt="local-mock-easy-plugin" />
 
 ## Get Started
 
@@ -34,6 +39,8 @@ yarn add local-mock-easy
 <script src="https://cdn.jsdelivr.net/npm/local-mock-easy"></script>
 <script>
   const { erudaLocalMock, vconsoleLocalMock } = window.localMockEasy
+  // You can also customize plugins for other debug panels through setup, renderLocalMock
+  const { setup, renderLocalMock } = window.localMockEasy
 </script>
 ```
 
@@ -67,6 +74,9 @@ const localMockplugin = vconsoleLocalMock(VConsole, {
   key: 'myLocalMock',
   state: 0,
   entry: 'http://localhost:8080',
+  fast: 0,
+  // default agent mode, pleace install local-mock-middleware on nodejs gateway
+  mode: 'agent',
 })
 
 vconsole.addPlugin(localMockplugin)
@@ -96,11 +106,13 @@ Since the entry file of 'devServer' is loaded in the domain name, you need to co
 
 ## Options API
 
-| params | desc                                                                 | type     | default                 |
-| :----- | :------------------------------------------------------------------- | :------- | :---------------------- |
-| state  | plugin open state                                                    | `number` | `0`                     |
-| entry  | the local entry                                                      | `string` | `http://localhost:8080` |
-| key    | the query params name in url.<br> `http://example.com?{key}={entry}` | `string` | `localMock`             |
+| params | desc | type | default |
+| :-- | :-- | :-- | :-- |
+| state | plugin open state | `number` | `0` |
+| entry | the local entry | `string` | `http://localhost:8080` |
+| key | the query params name in url.<br /> `http://example.com?{key}={entry}` | `string` | `localMock` |
+| fast | whether to show fast button | `number` | `0` |
+| mode | both static and gateway scenarios are supported | `static` or `agent` | `agent` |
 
 ## FQA
 

@@ -13,8 +13,6 @@ local-mock-middleware 是一个 node 端的调试中间件，目前支持 [expre
 
 ## 快速上手
 
-example 请参考 [staticAndGateWay 使用 demo](/example/staticAndGateWay/README_CN.md)
-
 ### 安装
 
 ```shell
@@ -75,7 +73,7 @@ app.listen(3001, function () {
 
 #### 更多使用
 
-> 通过配置 `localMockParamsName` ；来修改需要拦截的参数名称，如：http://example.com?myLocalMock={entry}  
+> 通过配置 `localMockParamsName`，用于修改需要拦截的参数名称，如：http://example.com?myLocalMock={entry}  
 > 通过配置 `htmlHost`，用于自定义 html 转发的 host  
 > 通过配置`htmlPort`，用于自定义 html 转发的 port  
 > 通过配置 `htmlServerPath`，用于自定义 html 转发的 path
@@ -121,7 +119,7 @@ const client = app.listen(3000, function () {
 | localMockParamsName | 需要拦截的参数名<br /> `http://example.com?{localMockParamsName}={entry}` | `string` | `localMock` |
 | htmlHost | 中转 html 的 host | `string` | "127.0.0.1" |
 | htmlPort | 中转 html 的 port | `number` | 8899 |
-| htmlServerPath | 中转 html 的路径 | `number` | "/local-mock-html" |
+| htmlServerPath | 中转 html 的路径 | `number` | `/local-mock-html` |
 | injectHtml | 仅对代理模式有效。注入的额外字符串的函数 | `(target) => string` | "" |
 
 ## FQA
