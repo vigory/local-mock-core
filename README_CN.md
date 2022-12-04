@@ -112,3 +112,9 @@ eruda.add(localMockplugin)
 ```
 
 > 更多使用，请参考 [local-mock-easy](https://www.npmjs.com/package/local-mock-easy)
+
+## FQA
+
+如果你遇到问题请联系我们 QQ 群 619705019 或者提 issues
+
+<img width="300" src="https://raw.githubusercontent.com/vigory/docs-static/main/local-mock-core/assets/images/local-mock-qq-chat.png" alt="local-mock-qq-chat" />

@@ -124,6 +124,10 @@ const client = app.listen(3000, function () {
 
 ## FQA
 
+如果你遇到问题请联系我们 QQ 群 619705019 或者提 issues
+
+<img width="300" src="https://raw.githubusercontent.com/vigory/docs-static/main/local-mock-core/assets/images/local-mock-qq-chat.png" alt="local-mock-qq-chat" />
+
 #### 什么时候开启 local-mock-middleware 中间件？
 
 > 重要的事情说三遍！！！
