@@ -18,12 +18,14 @@ localMock.getGenerateTemplate = function (target: string) {
           <script>
           try {
             function mock() {
-              fetch('${target}').then((obj) => {
-                obj.text().then((text) => {
+              fetch('${target}')
+              .then(function (res) {
+                return res.text()
+              })
+              .then(function (text) {
                   document.open()
                   document.write(text)
                   document.close() // ensure document.readyState = "complete"
-                })
               })
             }
             mock()

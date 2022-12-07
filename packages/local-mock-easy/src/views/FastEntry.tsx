@@ -26,6 +26,10 @@ const FastEntry = (props) => {
 
   const initDraggabilly = () => {
     const draggabilly = new Draggabilly(fastEntryEl.current)
+    // 解决onclick 不生效
+    draggabilly.on('staticClick', () => {
+      clickBtn()
+    })
 
     draggabilly.on('dragStart', () => {
       setPointerEvents('none')
@@ -46,7 +50,7 @@ const FastEntry = (props) => {
   }
 
   return fast === Fast.ON ? (
-    <div style={{ ...fastEntryBtn, ...pos, pointerEvents }} id={id} ref={fastEntryEl} onClick={clickBtn}>
+    <div style={{ ...fastEntryBtn, ...pos, pointerEvents }} id={id} ref={fastEntryEl}>
       <span>{state === Status.ON ? '退出调试' : '开启调试'}</span>
     </div>
   ) : null

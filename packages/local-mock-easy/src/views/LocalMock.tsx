@@ -19,8 +19,12 @@ const LocalMock = () => {
     const urlInfo = getCurrentURLInfo()
     setUrlInfo(urlInfo)
     staticModeHandle()
-    initFastEntry(handleToggle)
+    renderFastEntry(handleToggle, localConfig)
   }, [location.href])
+
+  useEffect(() => {
+    renderFastEntry(handleToggle, localConfig)
+  }, [localConfig])
 
   // handle with static mode
   const staticModeHandle = () => {
@@ -31,15 +35,18 @@ const LocalMock = () => {
     const currentURL = new URL(location.href)
     const { searchParams } = currentURL
     const target = searchParams.get(key)
+
     if (target) {
-      fetch(target).then((obj) => {
-        obj.text().then((text) => {
+      fetch(target)
+        .then(function (res) {
+          return res.text()
+        })
+        .then(function (text) {
           const newText = text.replace('<head>', `<head><script>var ${clientFlag} = true</script>`)
           window.document.open()
           window.document.write(newText)
           window.document.close() // ensure document.readyState = "complete"
         })
-      })
     }
   }
   const ping = () => {
@@ -182,13 +189,17 @@ export const renderLocalMock = (dom) => {
   render(<LocalMock />, dom)
 }
 
-export function initFastEntry(changeStateHandle) {
-  const data = getStorage(MOCK_KEY) || defaultConfig
+export function renderFastEntry(changeStateHandle, localConfig) {
   const id = 'local-mock-entry-fast-content'
-  const $el = document.getElementById(id) || document.createElement('div')
-  document.body.appendChild($el)
+  let $el = document.getElementById(id)
 
-  render(<FastEntry state={data.state} fast={data.fast} onChange={changeStateHandle} />, $el)
+  if (!$el) {
+    $el = document.createElement('div')
+    $el.id = id
+    document.body.appendChild($el)
+  }
+
+  render(<FastEntry state={localConfig.state} fast={localConfig.fast} onChange={changeStateHandle} />, $el)
 }
 
 export default LocalMock
