@@ -1,21 +1,28 @@
-const Koa = require("koa")
-const { koaMiddleware } = require("local-mock-middleware")
+const Koa = require('koa')
+const proxy = require('koa-better-http-proxy')
+const createLockMock = require('local-mock-middleware')
 
 const app = new Koa()
 
-const middleware = koaMiddleware({
-  key: 'myLocalMock',
-  injectHtml: () => {
-    return `<script type="text/javascript">
-        alert("ok")
-      </script>`
-  },
+const localMock = createLockMock({
+  isLocalMockProxyOpen: true,
 })
 
-app.use(middleware)
+localMock.createKoaLocalHtmlProxy(app)
+app.use(async (ctx, next) => {
+  if (ctx.method !== 'GET') {
+    next()
+    return
+  }
+  await proxy('http://127.0.0.1:9000')(ctx)
+  return
+})
 // response
 app.use((ctx) => {
-  ctx.body = "Hello Koa"
+  ctx.body = 'Hello Koa'
 })
 
-app.listen(3001)
+const client = app.listen(3000, function () {
+  localMock.updateKoaPort(client)
+  console.log('koa start sucessfully  ...')
+})

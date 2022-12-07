@@ -7,12 +7,12 @@
   "types": "types/index.d.ts",
   "unpkg": "dist/index.global.js",
   "jsdelivr": "dist/index.global.js",
-  "author": "redstar08",
+  "author": "vigory",
   "license": "MIT",
   "homepage": "https://github.com/vigory/local-mock-core",
   "repository": "https://github.com/vigory/local-mock-core",
   "scripts": {
-    "start": "rollup -w --environment NODE_ENV:development --config scripts/rollup.config.dev.ts --configPlugin @rollup/plugin-typescript",
+    "start": "rollup -w --environment NODE_ENV:development --config scripts/rollup.config.dev.ts --configPlugin @rollup/plugin-typescript --watch",
     "build": "rollup --environment NODE_ENV:production --config scripts/rollup.config.prod.ts --configPlugin @rollup/plugin-typescript",
     "patch": "npm --no-git-tag-version version patch",
     "test": "jest"
@@ -33,7 +33,8 @@
     "debugger"
   ],
   "dependencies": {
-    "preact": "^10.11.2"
+    "preact": "^10.11.2",
+    "draggabilly": "^3.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.19.3",

@@ -4,11 +4,11 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "express":"nodemon express.js",
-    "koa":"nodemon koa.js",
+    "express": "nodemon express.js",
+    "koa": "nodemon koa.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "redstar08",
+  "author": "vigory",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -18,7 +18,7 @@
     "formidable": "^1.2.2",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.13.4",
-    "local-mock-middleware": "^1.0.6",
+    "koa-better-http-proxy": "^0.2.10",
     "lodash": "^4.17.20",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",

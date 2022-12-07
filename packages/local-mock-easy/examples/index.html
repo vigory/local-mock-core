@@ -12,7 +12,7 @@
       import { erudaLocalMock } from '/dist/index.esm.js'
       eruda.init({ tool: 'console' })
       const localMockPlugin = erudaLocalMock(eruda, { entry: 'http://localhost:8080' })
-      eruda.add(localMockPlugin).show('localmock').show()
+      eruda.add(localMockPlugin)
     </script>
     <!-- <script type="module">
       import { vconsoleLocalMock } from '/dist/index.esm.js'
