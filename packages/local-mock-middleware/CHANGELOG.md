@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/vigory/local-mock-core/compare/local-mock-middleware@1.0.8...local-mock-middleware@1.1.0) (2022-12-16)
+
+### Bug Fixes
+
+- rollup.config.ts ([5039e57](https://github.com/vigory/local-mock-core/commit/5039e576702f609e9995e0f7a9c6183107dd9bd0))
+
 ## [1.0.8](https://github.com/vigory/local-mock-core/compare/local-mock-middleware@1.0.7-beta.4...local-mock-middleware@1.0.8) (2022-11-25)
 
 **Note:** Version bump only for package local-mock-middleware
