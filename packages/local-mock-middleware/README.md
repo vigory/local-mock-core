@@ -25,65 +25,103 @@ yarn add local-mock-middleware
 #### Middleware for express
 
 ```js
+// Use express as an example
 const express = require('express')
-const { expressMiddleware } = require('local-mock-middleware')
+const createLockMock = require('local-mock-middleware')
 
 const app = express()
 
-const middleware = expressMiddleware({
-  isOpen: process.env.NODE_ENV === 'dev', // ensure not to be used in production!!!
+// 1. create localMock instance
+const localMock = createLockMock({
+  isLocalMockProxyOpen: process.env.NODE_ENV === 'dev', // ensure not to be used in production!!!
+  htmlPort: 3000,
 })
 
-app.use(middleware)
+// 2. oepn local-mock html proxy
+localMock.createExpressLocalHtmlProxy(app)
+
+app.listen(3000, function () {
+  console.log('express start sucessfully  port 3000...')
+})
 ```
 
 #### Middleware for koa
 
 ```js
 const Koa = require('koa')
-const { koaMiddleware } = require('local-mock-middleware')
+const createLockMock = require('local-mock-middleware')
 
 const app = new Koa()
 
-const middleware = koaMiddleware({
-  isOpen: process.env.NODE_ENV === 'dev', // ensure not to be used in production!!!
+// 1. create localMock instance
+const localMock = createLockMock({
+  isLocalMockProxyOpen: process.env.NODE_ENV === 'dev', // ensure not to be used in production!!!
+  htmlPort: 3001,
 })
 
-app.use(middleware)
+// 2. oepn local-mock html proxy
+localMock.createKoaLocalHtmlProxy(app)
 
 // response
 app.use((ctx) => {
   ctx.body = 'Hello Koa'
 })
 
-app.listen(3001)
+app.listen(3001, function () {
+  console.log('koa start sucessfully  port 3001...')
+})
 ```
 
-> You can config your url query params use `options.key` such as http://example.com?myLocalMock={entry}  
-> You can config a `injectHtml` to inject any string to the html
+#### More use
+
+> Config `localMockParamsName`, to modify the parameter name to be intercepted. eg: http://example.com?myLocalMock={entry}  
+> Config `htmlHost`, to define custom html proxy host  
+> Config `htmlPort`, to define custom html proxy port  
+> Config `htmlServerPath`, to define custom html proxy path
 
 ```js
 const options = {
-  key: 'myLocalMock',
-  injectHtml: () => {
+  localMockParamsName: 'myLocalMock',
+  isLocalMockProxyOpen: process.env.NODE_ENV === 'dev', // ensure not to be used in production!!!
+  htmlHost: '127.0.0.1',
+  htmlPort: 3000,
+  htmlServerPath: '/local-mock-html',
+  injectHtml: (target) => {
     return `<script type="text/javascript">
-        alert("ok")
+        alert(${target})
       </script>`
   },
 }
 
-const middleware = expressMiddleware(options)
+const localMock = createLockMock(options)
 
-const koaMiddleware = koaMiddleware(options)
+const client = app.listen(3000, function () {
+  // Optional Properties use to set htmlPort to client.address().port
+  localMock.updateExpressPort(client)
+  console.log('express start sucessfully  ...')
+})
 ```
+
+## Function API
+
+| function                          | desc                                     | type               |
+| :-------------------------------- | :--------------------------------------- | :----------------- |
+| `createLockMock`                  | localMock instance                       | `(options) => ins` |
+| `ins.createExpressLocalHtmlProxy` | express middleware, to handle html proxy | `(app) => void`    |
+| `ins.updateExpressPort `          | express auto update port htmlPort        | `(client) => void` |
+| `ins.createKoaLocalHtmlProxy `    | koa middleware, to handle html proxy     | `(app) => void`    |
+| `ins.updateKoaPort `              | koa auto update port htmlPort            | `(client) => void` |
 
 ## Options API
 
 | params | desc | type | default |
 | :-- | :-- | :-- | :-- |
-| isOpen | The default false means that it is a middleware without any logic | boolean | false |
-| key | The query params name in url.<br> `http://example.com?{key}={entry}` | `string` | `localMock` |
-| injectHtml | A function return extra html string | `(req, res) => string` | "" |
+| isLocalMockProxyOpen | open state (false means a empty middleware) | `boolean` | `false` |
+| localMockParamsName | parameter name to be intercepted <br /> `http://example.com?{localMockParamsName}={entry}` | `string` | `localMock` |
+| htmlHost | custom html proxy host | `string` | "127.0.0.1" |
+| htmlPort | custom html proxy port | `number` | 8899 |
+| htmlServerPath | custom html proxy path | `number` | `/local-mock-html` |
+| injectHtml | A function that injects html string | `(target) => string` | "" |
 
 ## FQA
 
@@ -97,4 +135,4 @@ const koaMiddleware = koaMiddleware(options)
 
 #### What does local-mock-middleware do ?
 
-if `req.query` contains key `localMock` or `options.key` local-mock-middleware will generate and return a html includes mock function, the mock function will regard `req.query[key]` as a page entry and then fetch it, then use `document.write()` to rewrite current page.
+if `req.query` contains key `localMock` or `options.localMockParamsName` local-mock-middleware will generate and return a html includes mock function, the mock function will regard `req.query[key]` as a page entry and then fetch it, then use `document.write()` to rewrite current page.

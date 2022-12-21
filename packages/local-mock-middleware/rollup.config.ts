@@ -65,12 +65,12 @@ export default defineConfig({
       preventAssignment: true,
     }),
     commonjs({
-      include: 'node_modules/**',
+      include: ['node_modules/**', '../../node_modules/**'],
     }),
     eslint({
       throwOnError: true, // 抛出异常并阻止打包
       include: ['src/**'],
-      exclude: ['node_modules/**'],
+      exclude: ['node_modules/**', '../../node_modules/**'],
     }),
     babel({
       extensions: ['.js', '.jsx', '.ts', '.tsx'],

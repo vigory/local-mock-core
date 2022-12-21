@@ -1,18 +1,18 @@
 {
   "name": "local-mock-easy",
-  "version": "1.0.7-beta.0",
+  "version": "1.1.0",
   "description": "A easy debug plugin for eruda and vConsole.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "types/index.d.ts",
   "unpkg": "dist/index.global.js",
   "jsdelivr": "dist/index.global.js",
-  "author": "redstar08",
+  "author": "vigory",
   "license": "MIT",
   "homepage": "https://github.com/vigory/local-mock-core",
   "repository": "https://github.com/vigory/local-mock-core",
   "scripts": {
-    "start": "rollup -w --environment NODE_ENV:development --config scripts/rollup.config.dev.ts --configPlugin @rollup/plugin-typescript",
+    "start": "rollup -w --environment NODE_ENV:development --config scripts/rollup.config.dev.ts --configPlugin @rollup/plugin-typescript --watch",
     "build": "rollup --environment NODE_ENV:production --config scripts/rollup.config.prod.ts --configPlugin @rollup/plugin-typescript",
     "patch": "npm --no-git-tag-version version patch",
     "test": "jest"
@@ -33,6 +33,7 @@
     "debugger"
   ],
   "dependencies": {
+    "draggabilly": "^3.0.0",
     "preact": "^10.11.2"
   },
   "devDependencies": {

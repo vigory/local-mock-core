@@ -7,6 +7,7 @@
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
+  "workspaces": ["packages/*"],
   "command": {
     "version": {
       "allowBranch": "release",

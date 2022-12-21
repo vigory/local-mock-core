@@ -40,8 +40,9 @@ export const LocalMockFooter = {
 
 export const LocalMockTextarea = {
   ...commonStyle,
-  width: '100%',
-  minWidth: '100%',
+  flex: 1,
+  // width: '100%',
+  // minWidth: '100%',
   minHeight: '60px',
   maxHeight: '240px',
   padding: '10px',
@@ -50,6 +51,7 @@ export const LocalMockTextarea = {
 export const LocalMockError = {
   color: '#ff4d4f',
   marginLeft: '10px',
+  marginRight: '10px',
 }
 
 export const LocalMockSuccess = {
@@ -57,6 +59,7 @@ export const LocalMockSuccess = {
   fontWeight: 700,
   fontSize: 18,
   marginLeft: '10px',
+  marginRight: '10px',
 }
 
 export const LocalMockInput = {
@@ -73,11 +76,18 @@ export const LocalMockButton = {
   borderRadius: '1000px',
   borderColor: '#d9d9d9',
   backgroundColor: '#ffffff',
+  color: '#333333',
+}
+
+export const LocalMockButtonFast = {
+  ...LocalMockButton,
+  padding: '4px 20px',
+  marginLeft: '20px',
 }
 
 export const LocalMockButtonOK = {
   ...LocalMockButton,
-  padding: '8px 20px',
+  padding: '4px 20px',
 }
 
 export const LocalMockButtonPrimary = {
@@ -114,6 +124,7 @@ const styles = {
   LocalMockButtonPrimary,
   LocalMockButtonFooter,
   VConsoleLocalMockWrapper,
+  LocalMockButtonFast,
 }
 
 export default styles
